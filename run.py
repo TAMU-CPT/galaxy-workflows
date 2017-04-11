@@ -49,21 +49,20 @@ def __main__():
 
     gi = galaxy.GalaxyInstance(args.url, args.key)
     for wf in gi.workflows.get_workflows():
-        if 'PAP 2017' not in wf['name']: continue
-
         if not os.path.exists(wf['owner']):
             os.makedirs(wf['owner'])
 
         if wf['id'] in existing_wf:
             original_name = existing_wf[wf['id']]
+            # TODO: FIX THIS. It tries to overwrite files weirdly.
             # If the name has changed, `git mv`
-            if original_name != wf['name']:
-                print('\t', 'Current', wf['id'], wf['name'], 'Existing', existing_wf[wf['id']])
-                subprocess.check_call([
-                    'git', 'mv',
-                    os.path.join('data', wf['owner'], original_name + '.ga'),
-                    os.path.join('data', wf['owner'], wf['name'] + '.ga')
-                ])
+            # if original_name != wf['name']:
+                # print('\t', 'Current', wf['id'], wf['name'], 'Existing', existing_wf[wf['id']])
+                # subprocess.check_call([
+                    # 'git', 'mv',
+                    # os.path.join('data', wf['owner'], original_name + '.ga'),
+                    # os.path.join('data', wf['owner'], wf['name'] + '.ga')
+                # ])
 
         try:
             wf_data = gi.workflows.export_workflow_json(wf['id'])
