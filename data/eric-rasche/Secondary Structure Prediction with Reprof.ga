@@ -1,0 +1,201 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "3eb37d70e543cfef",
+    "name": "Secondary Structure Prediction with Reprof",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "bp_genbank2gff3",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Genbank to GFF3",
+            "outputs": [
+                {
+                    "name": "gff3",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 247.5,
+                "top": 168
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "bp_genbank2gff3",
+            "tool_state": "{\"__page__\": 0, \"ethresh\": \"\\\"1\\\"\", \"sofile\": \"{\\\"sofile\\\": \\\"__none__\\\", \\\"__current_case__\\\": 0}\", \"noinfer\": \"\\\"true\\\"\", \"genbank\": \"null\", \"typesource\": \"\\\"contig\\\"\", \"model\": \"\\\"--CDS\\\"\", \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "5b0d0f03-9fe6-4508-8850-047784af2266",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gbk.seq_export",
+            "id": 1,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "GenBank Genome Sequence Export",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 242.5,
+                "top": 450
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gbk.seq_export",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"use_name\": \"\\\"True\\\"\", \"positional_1\": \"null\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "fefd84e0-830c-405f-8ca3-131d3d6ef651",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.export_seq",
+            "id": 2,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 0,
+                    "output_name": "gff3"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 1,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "GFF3 Feature Sequence Export",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 547.5,
+                "top": 295
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.export_seq",
+            "tool_state": "{\"__page__\": 0, \"feature_filter\": \"\\\"CDS\\\"\", \"__rerun_remap_job_id__\": null, \"gff3_data\": \"null\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": null, \\\"__current_case__\\\": 1}\"}",
+            "tool_version": "1.0.1",
+            "type": "tool",
+            "uuid": "728a266f-1b69-4769-9f0c-3424e09e8ee5",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "jbrowse",
+            "id": 3,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "JBrowse",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1027.5,
+                "top": 332
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "jbrowse",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"data_tracks\": \"[{\\\"category\\\": \\\"Default\\\", \\\"__index__\\\": 0, \\\"annotation_label\\\": \\\"Secondary Structure\\\", \\\"data_format\\\": {\\\"match_part\\\": \\\"False\\\", \\\"annotation\\\": null, \\\"__current_case__\\\": 2, \\\"data_format_select\\\": \\\"gene_calls\\\"}}, {\\\"category\\\": \\\"Default\\\", \\\"__index__\\\": 1, \\\"annotation_label\\\": \\\"\\\", \\\"data_format\\\": {\\\"match_part\\\": \\\"False\\\", \\\"annotation\\\": null, \\\"__current_case__\\\": 2, \\\"data_format_select\\\": \\\"gene_calls\\\"}}]\", \"positional_1\": \"null\"}",
+            "tool_version": "0.3",
+            "type": "tool",
+            "uuid": "9d7ddc58-5efc-4b42-bea9-f50ca5b2820a",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/iuc/reprof/rost_reprof/1.0.1",
+            "id": 4,
+            "input_connections": {
+                "query": {
+                    "id": 2,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "reprof",
+            "outputs": [
+                {
+                    "name": "secondary_structure",
+                    "type": "gff3"
+                },
+                {
+                    "name": "pE",
+                    "type": "wig"
+                },
+                {
+                    "name": "pH",
+                    "type": "wig"
+                },
+                {
+                    "name": "pL",
+                    "type": "wig"
+                },
+                {
+                    "name": "RI_S",
+                    "type": "wig"
+                },
+                {
+                    "name": "solvent_accessibility",
+                    "type": "gff3"
+                },
+                {
+                    "name": "PACC",
+                    "type": "wig"
+                },
+                {
+                    "name": "PREL",
+                    "type": "wig"
+                },
+                {
+                    "name": "P10",
+                    "type": "wig"
+                },
+                {
+                    "name": "RI_A",
+                    "type": "wig"
+                }
+            ],
+            "position": {
+                "left": 770.5,
+                "top": 360
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iuc/reprof/rost_reprof/1.0.1",
+            "tool_shed_repository": {
+                "changeset_revision": "00316da7014c",
+                "name": "reprof",
+                "owner": "iuc",
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"outputs\": \"null\", \"__rerun_remap_job_id__\": null, \"query\": \"null\"}",
+            "tool_version": "1.0.1",
+            "type": "tool",
+            "uuid": "ff02758b-1a53-4a33-ab3f-de35def122d8",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "ba9c1d91-94b8-4650-8f57-b53facf7aa36"
+}

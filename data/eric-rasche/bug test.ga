@@ -1,0 +1,43 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "ca3351cc2554afc5",
+    "name": "bug test",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/jbrowse/jbrowse/0.4",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "JBrowse v0.4",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 223,
+                "top": 209.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/jbrowse/jbrowse/0.4",
+            "tool_shed_repository": {
+                "changeset_revision": "7342f467507b",
+                "name": "jbrowse",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"standalone\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"genomes\": \"null\", \"track_groups\": \"[{\\\"category\\\": \\\"Default\\\", \\\"__index__\\\": 0, \\\"data_tracks\\\": [{\\\"__index__\\\": 0, \\\"data_format\\\": {\\\"match_part\\\": {\\\"match_part_select\\\": \\\"false\\\", \\\"__current_case__\\\": 1}, \\\"jbstyle\\\": {\\\"style_classname\\\": \\\"feature\\\", \\\"style_description\\\": \\\"note,description\\\", \\\"style_height\\\": \\\"100px\\\", \\\"style_label\\\": \\\"name,id\\\"}, \\\"jbcolor_scale\\\": {\\\"color_score\\\": {\\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"__current_case__\\\": 0, \\\"color_score_select\\\": \\\"none\\\"}}, \\\"__current_case__\\\": 2, \\\"annotation\\\": null, \\\"data_format_select\\\": \\\"gene_calls\\\"}}]}]\", \"gencode\": \"\\\"1\\\"\", \"uglyTestingHack\": \"\\\"\\\"\"}",
+            "tool_version": "0.4",
+            "type": "tool",
+            "uuid": "5b256769-591d-440c-9ffd-47f6facb2d9d",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "7f8d73e1-7a17-46e5-9279-2344cca569d3"
+}

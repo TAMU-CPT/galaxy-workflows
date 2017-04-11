@@ -1,0 +1,201 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "212878241cf93624",
+    "name": "Phage Annotation Pipeline 2015 - Part C",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 120,
+                "top": 355.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "a31c9ac8-b99d-47f3-a423-9c3b9bef94b6",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.genbank.RelabelTags",
+            "id": 1,
+            "input_connections": {
+                "file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Renumber GenBank Genes",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "genbank"
+                },
+                {
+                    "name": "change_table",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 349,
+                "top": 337.5
+            },
+            "post_job_actions": {
+                "RenameDatasetActionchange_table": {
+                    "action_arguments": {
+                        "newname": "Genbank gene name change table"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "change_table"
+                },
+                "RenameDatasetActiongenbank": {
+                    "action_arguments": {
+                        "newname": "Genbank File with Updated Gene Numbers.gbk"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "genbank"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.genbank.RelabelTags",
+            "tool_state": "{\"__page__\": 0, \"tag_to_update\": \"\\\"locus_tag\\\"\", \"__rerun_remap_job_id__\": null, \"genbank_format\": \"\\\"Genbank\\\"\", \"string_prefix\": \"\\\"display_id\\\"\", \"change_table_format\": \"\\\"TSV_U\\\"\", \"file\": \"null\", \"leading_zeros\": \"\\\"3\\\"\"}",
+            "tool_version": "1.95",
+            "type": "tool",
+            "uuid": "2862c316-b5ce-499c-9616-d66d170845e0",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "change_table",
+                    "uuid": null
+                },
+                {
+                    "label": null,
+                    "output_name": "genbank",
+                    "uuid": null
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_genbank_tools/Color/1.94",
+            "id": 2,
+            "input_connections": {
+                "file": {
+                    "id": 1,
+                    "output_name": "genbank"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Color",
+            "outputs": [
+                {
+                    "name": "genbank",
+                    "type": "Genbank"
+                }
+            ],
+            "position": {
+                "left": 647,
+                "top": 294.5
+            },
+            "post_job_actions": {
+                "HideDatasetActiongenbank": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "genbank"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_genbank_tools/Color/1.94",
+            "tool_shed_repository": {
+                "changeset_revision": "aad5ace58ed4",
+                "name": "cpt_genbank_tools",
+                "owner": "esr",
+                "tool_shed": "geiger.tamu.edu/toolshed"
+            },
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"genbank_format\": \"\\\"Genbank\\\"\", \"mode\": \"\\\"append\\\"\", \"file\": \"null\"}",
+            "tool_version": "1.94",
+            "type": "tool",
+            "uuid": "2e80b620-cd99-40fd-a012-4789b5f71179",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_mapping/Genome_Map/0.0.1",
+            "id": 3,
+            "input_connections": {
+                "file": {
+                    "id": 2,
+                    "output_name": "genbank"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Genome Mapper",
+            "outputs": [
+                {
+                    "name": "genome_map",
+                    "type": "svg"
+                }
+            ],
+            "position": {
+                "left": 979,
+                "top": 301.5
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActiongenome_map": {
+                    "action_arguments": {
+                        "newtype": "svg"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "genome_map"
+                },
+                "RenameDatasetActiongenome_map": {
+                    "action_arguments": {
+                        "newname": "Genome Map"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "genome_map"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_mapping/Genome_Map/0.0.1",
+            "tool_shed_repository": {
+                "changeset_revision": "ee71f294f198",
+                "name": "cpt_mapping",
+                "owner": "esr",
+                "tool_shed": "geiger.tamu.edu/toolshed"
+            },
+            "tool_state": "{\"double_line_for_overlap\": \"\\\"true\\\"\", \"label_query\": \"\\\"!contains:\\\\\\\"Hypothetical\\\\\\\" key:\\\\\\\"CDS,tRNA\\\\\\\" tag:\\\\\\\"locus_tag\\\\\\\"\\\"\", \"file\": \"null\", \"__page__\": 0, \"rows\": \"\\\"3\\\"\", \"__rerun_remap_job_id__\": null, \"label\": \"\\\"true\\\"\", \"separate_strands\": \"\\\"true\\\"\", \"opacity\": \"\\\"0.7\\\"\", \"justification\": \"\\\"justify\\\"\", \"label_shrink_mode\": \"\\\"shrink\\\"\", \"label_callouts\": \"\\\"true\\\"\", \"split_factor\": \"\\\"1.05\\\"\", \"width_value\": \"\\\"800\\\"\", \"genome_map_format\": \"\\\"SVG\\\"\", \"label_text_source\": \"\\\"product\\\"\", \"width_mode\": \"\\\"static\\\"\", \"label_position\": \"\\\"above\\\"\", \"label_from\": \"\\\"custom\\\"\", \"inter_line_separation\": \"\\\"200\\\"\", \"y_offset\": \"\\\"100\\\"\", \"x_offset\": \"\\\"50\\\"\", \"repeat_label_numeric_features\": \"[]\", \"view\": \"\\\"alt_artemis\\\"\"}",
+            "tool_version": "0.0.1",
+            "type": "tool",
+            "uuid": "eaa6ce4c-f354-477f-a9e4-22aec876553f",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "genome_map",
+                    "uuid": null
+                }
+            ]
+        }
+    },
+    "uuid": "9fa384e6-c5d1-424b-913f-3250ab39fe48"
+}

@@ -1,0 +1,274 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "97e95bc028a2aba5",
+    "name": "PAUSE 3 - Paired End (v4.0)",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Reference Genome"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 202,
+                "top": 478.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Reference Genome\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "218db46c-acb8-4ac6-ab23-526d0ceb6dd5",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "9d33aa77-6d68-465f-bef9-7275be93dc03"
+                }
+            ]
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "bowtie2",
+            "id": 1,
+            "input_connections": {
+                "reference_genome|own_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Bowtie2",
+                    "name": "reference_genome"
+                },
+                {
+                    "description": "runtime parameter for tool Bowtie2",
+                    "name": "library"
+                },
+                {
+                    "description": "runtime parameter for tool Bowtie2",
+                    "name": "library"
+                }
+            ],
+            "label": null,
+            "name": "Bowtie2",
+            "outputs": [
+                {
+                    "name": "output_unaligned_reads_l",
+                    "type": "fastqsanger"
+                },
+                {
+                    "name": "output_unaligned_reads_r",
+                    "type": "fastqsanger"
+                },
+                {
+                    "name": "output",
+                    "type": "bam"
+                }
+            ],
+            "position": {
+                "left": 443,
+                "top": 316.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionoutput_unaligned_reads_l": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_unaligned_reads_l"
+                },
+                "HideDatasetActionoutput_unaligned_reads_r": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_unaligned_reads_r"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "bowtie2",
+            "tool_state": "{\"__page__\": 0, \"read_group\": \"{\\\"selection\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"unaligned_file\": \"\\\"false\\\"\", \"library\": \"{\\\"min_insert\\\": \\\"0\\\", \\\"type\\\": \\\"paired\\\", \\\"input_2\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1, \\\"input_1\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"max_insert\\\": \\\"250\\\"}\", \"reference_genome\": \"{\\\"source\\\": \\\"history\\\", \\\"__current_case__\\\": 1, \\\"own_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}}\", \"params\": \"{\\\"full\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\"}",
+            "tool_version": "0.2",
+            "type": "tool",
+            "uuid": "dac2f5d7-c0f9-4160-847f-2e5e502ae76d",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.pause3.starts_to_wiggle",
+            "id": 2,
+            "input_connections": {
+                "bam_file": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool PAUSE BAM to Starts Wiggle",
+                    "name": "bam_file"
+                }
+            ],
+            "label": null,
+            "name": "PAUSE BAM to Starts Wiggle",
+            "outputs": [
+                {
+                    "name": "wig_f",
+                    "type": "bigwig"
+                },
+                {
+                    "name": "wig_r",
+                    "type": "bigwig"
+                }
+            ],
+            "position": {
+                "left": 853,
+                "top": 362.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionwig_f": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "wig_f"
+                },
+                "HideDatasetActionwig_r": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "wig_r"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.pause3.starts_to_wiggle",
+            "tool_state": "{\"bam_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "3.0",
+            "type": "tool",
+            "uuid": "b9c99720-a143-4111-ba70-a7129022894b",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/brad-chapman/bam_to_bigwig/bam_to_bigwig/0.1.1",
+            "id": 3,
+            "input_connections": {
+                "align": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool BAM to BigWig",
+                    "name": "align"
+                }
+            ],
+            "label": null,
+            "name": "BAM to BigWig",
+            "outputs": [
+                {
+                    "name": "out",
+                    "type": "bigwig"
+                }
+            ],
+            "position": {
+                "left": 865,
+                "top": 532
+            },
+            "post_job_actions": {
+                "HideDatasetActionout": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/brad-chapman/bam_to_bigwig/bam_to_bigwig/0.1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "52bcd04ee0d6",
+                "name": "bam_to_bigwig",
+                "owner": "brad-chapman",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"align\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.1",
+            "type": "tool",
+            "uuid": "b5369302-084b-4544-a09e-c8add64b6f39",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "jbrowse",
+            "id": 4,
+            "input_connections": {
+                "action|genomes": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "track_groups_0|data_tracks_0|data_format|annotation": [
+                    {
+                        "id": 3,
+                        "output_name": "out"
+                    },
+                    {
+                        "id": 2,
+                        "output_name": "wig_r"
+                    },
+                    {
+                        "id": 2,
+                        "output_name": "wig_f"
+                    }
+                ]
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool JBrowse",
+                    "name": "action"
+                }
+            ],
+            "label": null,
+            "name": "JBrowse",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1145,
+                "top": 217.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "jbrowse",
+            "tool_state": "{\"__page__\": 0, \"standalone\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"track_groups\": \"[{\\\"category\\\": \\\"PAUSE3\\\", \\\"__index__\\\": 0, \\\"data_tracks\\\": [{\\\"__index__\\\": 0, \\\"data_format\\\": {\\\"var_band\\\": \\\"true\\\", \\\"track_visibility\\\": \\\"default_off\\\", \\\"scaling\\\": {\\\"scale_select\\\": \\\"auto_global\\\", \\\"__current_case__\\\": 1}, \\\"xyplot\\\": \\\"true\\\", \\\"__current_case__\\\": 4, \\\"scale_select2\\\": \\\"linear\\\", \\\"annotation\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"jbcolor\\\": {\\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"bicolor_pivot\\\": {\\\"bicolor_pivot_select\\\": \\\"zero\\\", \\\"__current_case__\\\": 0}}, \\\"data_format_select\\\": \\\"wiggle\\\"}}]}]\", \"action\": \"{\\\"action_select\\\": \\\"create\\\", \\\"genomes\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 0}\", \"gencode\": \"\\\"1\\\"\", \"uglyTestingHack\": \"\\\"\\\"\", \"jbgen\": \"{\\\"trackPadding\\\": \\\"20\\\", \\\"show_tracklist\\\": \\\"true\\\", \\\"show_overview\\\": \\\"true\\\", \\\"show_nav\\\": \\\"true\\\", \\\"aboutDescription\\\": \\\"\\\", \\\"defaultLocation\\\": \\\"\\\", \\\"hideGenomeOptions\\\": \\\"false\\\", \\\"shareLink\\\": \\\"true\\\", \\\"show_menu\\\": \\\"true\\\"}\"}",
+            "tool_version": "0.5.2",
+            "type": "tool",
+            "uuid": "2e969898-38ea-4448-9a96-edce175ab93b",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "default",
+                    "uuid": "e6a0cb71-b386-4b39-bac2-9dd3aaed5b22"
+                },
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "2a2eb248-89c7-4712-9711-eafb6ed2b144"
+                }
+            ]
+        }
+    },
+    "uuid": "ce013bee-edd3-444d-9b18-dfeafe2d5739"
+}

@@ -1,0 +1,112 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "95b28c313e1575a3",
+    "name": "bug-1534",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 200,
+                "top": 293
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "551c74dd-5563-46ae-9249-ab0f4b4780aa",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "secure_hash_message_digest",
+            "id": 1,
+            "input_connections": {
+                "input1": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Secure Hash / Message Digest",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 408,
+                "top": 256
+            },
+            "post_job_actions": {
+                "HideDatasetActionout_file1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_file1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "secure_hash_message_digest",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"null\", \"algorithms\": \"[\\\"md5\\\"]\"}",
+            "tool_version": "0.0.1",
+            "type": "tool",
+            "uuid": "79cbccaa-e3d8-4386-8698-d7cb1e80f756",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "secure_hash_message_digest",
+            "id": 2,
+            "input_connections": {
+                "input1": {
+                    "id": 1,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Secure Hash / Message Digest",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 701,
+                "top": 200
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "secure_hash_message_digest",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"null\", \"algorithms\": \"[\\\"md5\\\"]\"}",
+            "tool_version": "0.0.1",
+            "type": "tool",
+            "uuid": "9095a75c-443e-43b3-880b-4ab809a7e0d5",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "out_file1",
+                    "uuid": "f53ddf5f-ed50-4440-a702-18f1ec948f1c"
+                }
+            ]
+        }
+    },
+    "uuid": "df891611-48cd-4798-b938-1957d5f2978a"
+}

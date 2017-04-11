@@ -1,0 +1,86 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "2a6cff0f3e5392a5",
+    "name": "TerL Analysis",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "TerL Proteins"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 100,
+                "top": 233
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"TerL Proteins\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "5e07afd9-0fa0-4a80-8b36-930b9d35eb74",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/hmmer3/hmmer_hmmsearch/0.1.0",
+            "id": 1,
+            "input_connections": {
+                "seqdb": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "hmmsearch",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                },
+                {
+                    "name": "tblout",
+                    "type": "txt"
+                },
+                {
+                    "name": "domtblout",
+                    "type": "txt"
+                },
+                {
+                    "name": "pfamtblout",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 359,
+                "top": 200
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/hmmer3/hmmer_hmmsearch/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "62479bdcc059",
+                "name": "hmmer3",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"incT\": \"\\\"\\\"\", \"seed\": \"\\\"42\\\"\", \"nobias\": \"\\\"false\\\"\", \"incE\": \"\\\"\\\"\", \"cut_nc\": \"\\\"false\\\"\", \"__page__\": 0, \"incdomT\": \"\\\"\\\"\", \"seqdb\": \"null\", \"cut_ga\": \"\\\"false\\\"\", \"__rerun_remap_job_id__\": null, \"incdomE\": \"\\\"\\\"\", \"oformat\": \"[\\\"tblout\\\", \\\"domtblout\\\", \\\"pfamtblout\\\"]\", \"cut_tc\": \"\\\"false\\\"\", \"E\": \"\\\"10.0\\\"\", \"max\": \"\\\"false\\\"\", \"T\": \"\\\"\\\"\", \"hmmfile\": \"null\", \"Z\": \"\\\"\\\"\", \"acc\": \"\\\"false\\\"\", \"F1\": \"\\\"0.02\\\"\", \"F2\": \"\\\"0.001\\\"\", \"F3\": \"\\\"1e-05\\\"\", \"nonull2\": \"\\\"false\\\"\", \"domE\": \"\\\"10.0\\\"\", \"domZ\": \"\\\"\\\"\", \"notextw\": \"\\\"false\\\"\", \"domT\": \"\\\"\\\"\", \"noali\": \"\\\"false\\\"\"}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "a534fc6e-231b-4058-a900-124c968c75d7",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "f3a03316-d0f2-422b-95af-f40347932bd2"
+}
