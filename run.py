@@ -3,8 +3,6 @@ import argparse
 import os
 import json
 import subprocess
-import time
-from tqdm import tqdm
 import glob
 import logging
 import datetime
