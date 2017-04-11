@@ -48,6 +48,8 @@ def __main__():
     import pprint; pprint.pprint(existing_wf)
 
     gi = galaxy.GalaxyInstance(args.url, args.key)
+
+    testCases = []
     for wf in gi.workflows.get_workflows():
         if not os.path.exists(wf['owner']):
             os.makedirs(wf['owner'])
@@ -64,27 +66,29 @@ def __main__():
                     # os.path.join('data', wf['owner'], wf['name'] + '.ga')
                 # ])
 
-        try:
+        with xunit('galaxy', 'download_wf') as testCase:
             wf_data = gi.workflows.export_workflow_json(wf['id'])
-            print('WRITE', wf['id'], wf['name'])
             with open(os.path.join('data', wf['owner'], wf['name'] + '.ga'), 'w') as handle:
                 wf_data['id'] = wf['id']
                 json.dump(wf_data, handle, sort_keys=True, indent=4)
-        except:
-            pass
+        testCases.append(testCase)
 
-    subprocess.check_call([
-        'git', 'add', 'data'
-    ])
-    numstat = subprocess.check_output([
-        'git', 'diff', '--cached', '--numstat',
-    ])
-    # Only commit if things were added.
-    if len(numstat.strip()) > 0:
+
+    with xunit('galaxy', 'git-commit') as gitTestCase:
         subprocess.check_call([
-            'git', 'commit', '-m', 'Automated commit for %s' % datetime.datetime.today()
+            'git', 'add', 'data'
         ])
+        numstat = subprocess.check_output([
+            'git', 'diff', '--cached', '--numstat',
+        ])
+        # Only commit if things were added.
+        if len(numstat.strip()) > 0:
+            subprocess.check_call([
+                'git', 'commit', '-m', 'Automated commit for %s' % datetime.datetime.today()
+            ])
 
+    ts = xunit_suite('Workflow Backup', testCases + [gitTestCase])
+    args.xunit_output.write(xunit_dump([ts]))
 
 if __name__ == "__main__":
     __main__()
