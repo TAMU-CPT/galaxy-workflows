@@ -1,0 +1,791 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "findSpanin (v3.1) Apollo",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.export",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Retrieve Data",
+                    "name": "org_source"
+                }
+            ],
+            "label": null,
+            "name": "Retrieve Data",
+            "outputs": [
+                {
+                    "name": "gff_out",
+                    "type": "gff3"
+                },
+                {
+                    "name": "fasta_out",
+                    "type": "fasta"
+                },
+                {
+                    "name": "json_out",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 270,
+                "top": 939.8333129882812
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.export",
+            "tool_state": "{\"cn_source\": \"{\\\"__current_case__\\\": 0, \\\"source_select\\\": \\\"all\\\"}\", \"org_source\": \"{\\\"org_raw\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1, \\\"source_select\\\": \\\"direct\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "3178fc6f-d032-4860-ad9a-35241fe597d3",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "get_orfs_or_cdss",
+            "id": 1,
+            "input_connections": {
+                "input_file": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Get open reading frames (ORFs) or coding sequences (CDSs)",
+                    "name": "input_file"
+                }
+            ],
+            "label": null,
+            "name": "Get open reading frames (ORFs) or coding sequences (CDSs)",
+            "outputs": [
+                {
+                    "name": "out_nuc_file",
+                    "type": "fasta"
+                },
+                {
+                    "name": "out_prot_file",
+                    "type": "fasta"
+                },
+                {
+                    "name": "out_bed_file",
+                    "type": "bed6"
+                },
+                {
+                    "name": "out_gff3_file",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 574.63330078125,
+                "top": 336
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "get_orfs_or_cdss",
+            "tool_state": "{\"__page__\": 0, \"ends\": \"\\\"closed\\\"\", \"input_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"min_len\": \"\\\"30\\\"\", \"ftype\": \"\\\"ORF\\\"\", \"mode\": \"\\\"all\\\"\", \"table\": \"\\\"11\\\"\", \"strand\": \"\\\"both\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "044b88c5-ad3a-48b2-86e3-88ae5df8f084",
+            "workflow_outputs": []
+        },
+        "10": {
+            "annotation": "",
+            "content_id": "TMHMM_to_gff3",
+            "id": 10,
+            "input_connections": {
+                "infile": {
+                    "id": 8,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool TMHMM (GFF3)",
+                    "name": "infile"
+                }
+            ],
+            "label": null,
+            "name": "TMHMM (GFF3)",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                },
+                {
+                    "name": "bw_i",
+                    "type": "wig"
+                },
+                {
+                    "name": "bw_o",
+                    "type": "wig"
+                },
+                {
+                    "name": "bw_m",
+                    "type": "wig"
+                }
+            ],
+            "position": {
+                "left": 1819.9166870117188,
+                "top": 836.3499755859375
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "TMHMM_to_gff3",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"infile\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "abc778ad-b80b-4d18-85d4-cddf113fd110",
+            "workflow_outputs": []
+        },
+        "11": {
+            "annotation": "",
+            "content_id": "gff3.rebase",
+            "id": 11,
+            "input_connections": {
+                "child": {
+                    "id": 10,
+                    "output_name": "output"
+                },
+                "parent": {
+                    "id": 5,
+                    "output_name": "stdout"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Rebase GFF3 features",
+                    "name": "parent"
+                },
+                {
+                    "description": "runtime parameter for tool Rebase GFF3 features",
+                    "name": "child"
+                }
+            ],
+            "label": null,
+            "name": "Rebase GFF3 features",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 2022.9500122070312,
+                "top": 666.3499755859375
+            },
+            "post_job_actions": {
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "Putative ISPs"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "gff3.rebase",
+            "tool_state": "{\"__page__\": 0, \"interpro\": \"\\\"false\\\"\", \"map_by\": \"\\\"ID\\\"\", \"parent\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"protein2dna\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"child\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "c520344d-64df-40d2-b527-73a9632662b4",
+            "workflow_outputs": []
+        },
+        "12": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.intersect",
+            "id": 12,
+            "input_connections": {
+                "gff3_data_a": {
+                    "id": 11,
+                    "output_name": "default"
+                },
+                "gff3_data_b": {
+                    "id": 7,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Intersect",
+                    "name": "gff3_data_b"
+                },
+                {
+                    "description": "runtime parameter for tool Intersect",
+                    "name": "gff3_data_a"
+                }
+            ],
+            "label": null,
+            "name": "Intersect",
+            "outputs": [
+                {
+                    "name": "oa",
+                    "type": "gff3"
+                },
+                {
+                    "name": "ob",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 2264.449996948242,
+                "top": 1078.949951171875
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.intersect",
+            "tool_state": "{\"gff3_data_b\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"gff3_data_a\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"within\": \"\\\"500\\\"\", \"mode\": \"\\\"ordered\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "4a117296-39d5-42a6-9c6b-58716324ec3a",
+            "workflow_outputs": []
+        },
+        "13": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.remove_annots",
+            "id": 13,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 12,
+                    "output_name": "oa"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Remove Annotation Feature",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "Remove Annotation Feature",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 2469.050003051758,
+                "top": 908.4833374023438
+            },
+            "post_job_actions": {
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "Candidate ISPs"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.remove_annots",
+            "tool_state": "{\"__page__\": 0, \"remark\": \"\\\"true\\\"\", \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "01c70aed-6644-43a2-8703-cf6b4c6d7599",
+            "workflow_outputs": []
+        },
+        "14": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.remove_annots",
+            "id": 14,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 12,
+                    "output_name": "ob"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Remove Annotation Feature",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "Remove Annotation Feature",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 2501.0166625976562,
+                "top": 1085.4166259765625
+            },
+            "post_job_actions": {
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "Candidate OSPs"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.remove_annots",
+            "tool_state": "{\"__page__\": 0, \"remark\": \"\\\"true\\\"\", \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "645d5729-4854-409c-af99-8a19dba7697c",
+            "workflow_outputs": []
+        },
+        "15": {
+            "annotation": "",
+            "content_id": "jbrowse-cpt",
+            "id": 15,
+            "input_connections": {
+                "action|update_jbrowse": {
+                    "id": 2,
+                    "output_name": "jbrowse"
+                },
+                "track_groups_0|data_tracks_0|data_format|annotation": {
+                    "id": 14,
+                    "output_name": "default"
+                },
+                "track_groups_0|data_tracks_1|data_format|annotation": {
+                    "id": 13,
+                    "output_name": "default"
+                },
+                "track_groups_0|data_tracks_2|data_format|annotation": {
+                    "id": 9,
+                    "output_name": "output1"
+                },
+                "track_groups_0|data_tracks_2|data_format|blast_parent": {
+                    "id": 5,
+                    "output_name": "stdout"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool JBrowse 0.6.2+cpt",
+                    "name": "action"
+                },
+                {
+                    "description": "runtime parameter for tool JBrowse 0.6.2+cpt",
+                    "name": "action"
+                }
+            ],
+            "label": null,
+            "name": "JBrowse 0.6.2+cpt",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 2660.5,
+                "top": 200
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "jbrowse-cpt",
+            "tool_state": "{\"__page__\": 0, \"standalone\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"track_groups\": \"[{\\\"category\\\": \\\"#date# Find Spanin\\\", \\\"__index__\\\": 0, \\\"data_tracks\\\": [{\\\"__index__\\\": 0, \\\"data_format\\\": {\\\"match_part\\\": {\\\"match_part_select\\\": \\\"false\\\", \\\"__current_case__\\\": 1}, \\\"jbstyle\\\": {\\\"style_classname\\\": \\\"feature\\\", \\\"style_description\\\": \\\"note\\\", \\\"style_height\\\": \\\"10\\\", \\\"max_height\\\": \\\"600\\\", \\\"style_label\\\": \\\"prodcut,name,id\\\"}, \\\"track_visibility\\\": \\\"default_off\\\", \\\"jbcolor_scale\\\": {\\\"color_score\\\": {\\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"__current_case__\\\": 0, \\\"color_score_select\\\": \\\"none\\\"}}, \\\"override_apollo_drag\\\": \\\"True\\\", \\\"__current_case__\\\": 2, \\\"override_apollo_plugins\\\": \\\"True\\\", \\\"track_class\\\": \\\"JBrowse/View/Track/CanvasFeatures\\\", \\\"annotation\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"data_format_select\\\": \\\"gene_calls\\\"}}, {\\\"__index__\\\": 1, \\\"data_format\\\": {\\\"match_part\\\": {\\\"match_part_select\\\": \\\"false\\\", \\\"__current_case__\\\": 1}, \\\"jbstyle\\\": {\\\"style_classname\\\": \\\"feature\\\", \\\"style_description\\\": \\\"note\\\", \\\"style_height\\\": \\\"10\\\", \\\"max_height\\\": \\\"600\\\", \\\"style_label\\\": \\\"prodcut,name,id\\\"}, \\\"track_visibility\\\": \\\"default_off\\\", \\\"jbcolor_scale\\\": {\\\"color_score\\\": {\\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"__current_case__\\\": 0, \\\"color_score_select\\\": \\\"none\\\"}}, \\\"override_apollo_drag\\\": \\\"True\\\", \\\"__current_case__\\\": 2, \\\"override_apollo_plugins\\\": \\\"True\\\", \\\"track_class\\\": \\\"JBrowse/View/Track/HTMLFeatures\\\", \\\"annotation\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"data_format_select\\\": \\\"gene_calls\\\"}}, {\\\"__index__\\\": 2, \\\"data_format\\\": {\\\"jbstyle\\\": {\\\"style_classname\\\": \\\"feature\\\", \\\"style_description\\\": \\\"Hit_titles\\\", \\\"style_height\\\": \\\"600px\\\", \\\"max_height\\\": \\\"6000\\\", \\\"style_label\\\": \\\"description\\\"}, \\\"min_gap\\\": \\\"2\\\", \\\"is_protein\\\": \\\"true\\\", \\\"track_visibility\\\": \\\"default_off\\\", \\\"jbcolor_scale\\\": {\\\"color_score\\\": {\\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"__current_case__\\\": 0, \\\"color_score_select\\\": \\\"none\\\"}}, \\\"override_apollo_drag\\\": \\\"True\\\", \\\"__current_case__\\\": 0, \\\"override_apollo_plugins\\\": \\\"True\\\", \\\"blast_parent\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"annotation\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"data_format_select\\\": \\\"blast\\\"}}]}]\", \"action\": \"{\\\"action_select\\\": \\\"update\\\", \\\"update_jbrowse\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"genomes\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"gencode\": \"\\\"11\\\"\", \"uglyTestingHack\": \"\\\"\\\"\", \"jbgen\": \"{\\\"trackPadding\\\": \\\"20\\\", \\\"show_tracklist\\\": \\\"true\\\", \\\"show_overview\\\": \\\"true\\\", \\\"show_nav\\\": \\\"true\\\", \\\"aboutDescription\\\": \\\"\\\", \\\"defaultLocation\\\": \\\"\\\", \\\"hideGenomeOptions\\\": \\\"false\\\", \\\"shareLink\\\": \\\"true\\\", \\\"show_menu\\\": \\\"true\\\"}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "96d9db1f-e12c-40ab-8722-9f4c3c2cd6c9",
+            "workflow_outputs": []
+        },
+        "16": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.create_or_update",
+            "id": 16,
+            "input_connections": {
+                "jbrowse": {
+                    "id": 15,
+                    "output_name": "output"
+                },
+                "org_source|org_file": {
+                    "id": 0,
+                    "output_name": "json_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Create or Update Organism",
+                    "name": "org_source"
+                },
+                {
+                    "description": "runtime parameter for tool Create or Update Organism",
+                    "name": "jbrowse"
+                }
+            ],
+            "label": null,
+            "name": "Create or Update Organism",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 3012.9833374023438,
+                "top": 449.91668701171875
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.create_or_update",
+            "tool_state": "{\"__page__\": 0, \"jbrowse\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"org_source\": \"{\\\"org_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 2, \\\"source_select\\\": \\\"auto_json\\\"}\", \"__rerun_remap_job_id__\": null, \"species\": \"\\\"\\\"\", \"genus\": \"\\\"\\\"\", \"public\": \"\\\"false\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "6411fa57-b2a8-47d4-a843-4340d27f7c53",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.fetch_jbrowse",
+            "id": 2,
+            "input_connections": {
+                "org_source|org_file": {
+                    "id": 0,
+                    "output_name": "json_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Retrieve JBrowse",
+                    "name": "org_source"
+                }
+            ],
+            "label": null,
+            "name": "Retrieve JBrowse",
+            "outputs": [
+                {
+                    "name": "jbrowse",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1616.4166870117188,
+                "top": 357.7166748046875
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.fetch_jbrowse",
+            "tool_state": "{\"org_source\": \"{\\\"org_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 2, \\\"source_select\\\": \\\"auto_json\\\"}\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "959ae0ba-4e56-4684-9f23-631c3d391e2c",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.cdsParents",
+            "id": 3,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 1,
+                    "output_name": "out_gff3_file"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GFF3 Add Gene to CDS",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "GFF3 Add Gene to CDS",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 788.9000244140625,
+                "top": 672.8499755859375
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.cdsParents",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "3889f992-4f1e-46da-ba98-8d17221ab560",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.require_phage_start",
+            "id": 4,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GFF3 Filter: Require Phage Start",
+                    "name": "reference_genome"
+                },
+                {
+                    "description": "runtime parameter for tool GFF3 Filter: Require Phage Start",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "GFF3 Filter: Require Phage Start",
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 796.5166015625,
+                "top": 1212.4833984375
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.require_phage_start",
+            "tool_state": "{\"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "c1bd9b65-3269-4b8c-8022-fd7871c71b5c",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.require_sd",
+            "id": 5,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 4,
+                    "output_name": "stdout"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Gff3 Filter: Require SD",
+                    "name": "reference_genome"
+                },
+                {
+                    "description": "runtime parameter for tool Gff3 Filter: Require SD",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "Gff3 Filter: Require SD",
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 1196.5,
+                "top": 1084
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.require_sd",
+            "tool_state": "{\"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "1b8a1b2f-8e8e-4809-ab94-31a758b15eb5",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.export_seq",
+            "id": 6,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 5,
+                    "output_name": "stdout"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GFF3 Feature Sequence Export",
+                    "name": "gff3_data"
+                },
+                {
+                    "description": "runtime parameter for tool GFF3 Feature Sequence Export",
+                    "name": "reference_genome"
+                }
+            ],
+            "label": null,
+            "name": "GFF3 Feature Sequence Export",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 1178.5833740234375,
+                "top": 722.8499755859375
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.export_seq",
+            "tool_state": "{\"__page__\": 0, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"feature_filter\": \"\\\"CDS\\\"\", \"nodesc\": \"\\\"true\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "7f8de764-3f76-4159-a3a4-fa3ea3d46a70",
+            "workflow_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.fasta.lipory",
+            "id": 7,
+            "input_connections": {
+                "positional_1": {
+                    "id": 5,
+                    "output_name": "stdout"
+                },
+                "positional_2": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Identify Lipoboxes",
+                    "name": "positional_2"
+                },
+                {
+                    "description": "runtime parameter for tool Identify Lipoboxes",
+                    "name": "positional_1"
+                }
+            ],
+            "label": null,
+            "name": "Identify Lipoboxes",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 2011.0499877929688,
+                "top": 1179.7833251953125
+            },
+            "post_job_actions": {
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "Putative OSPs"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.fasta.lipory",
+            "tool_state": "{\"__page__\": 0, \"lipobox_maxdist\": \"\\\"60\\\"\", \"__rerun_remap_job_id__\": null, \"positional_2\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"positional_1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"lipobox_mindist\": \"\\\"10\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "ec467a4d-059b-4dea-8632-329dbec77040",
+            "workflow_outputs": []
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.fasta.seq_trans",
+            "id": 8,
+            "input_connections": {
+                "sequences": {
+                    "id": 6,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Fasta Translate",
+                    "name": "sequences"
+                }
+            ],
+            "label": null,
+            "name": "Fasta Translate",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 1530.4833374023438,
+                "top": 683.4166870117188
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.fasta.seq_trans",
+            "tool_state": "{\"__page__\": 0, \"output\": \"{\\\"format_select\\\": \\\"protein\\\", \\\"strip_stops\\\": \\\"true\\\", \\\"__current_case__\\\": 1, \\\"table\\\": \\\"11\\\"}\", \"fasta\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"sequences\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "6d8a5b29-d0ea-4b80-91bb-32e5bb173ed2",
+            "workflow_outputs": []
+        },
+        "9": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastp_wrapper/0.1.01",
+            "id": 9,
+            "input_connections": {
+                "query": {
+                    "id": 8,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool NCBI BLAST+ blastp",
+                    "name": "query"
+                }
+            ],
+            "label": null,
+            "name": "NCBI BLAST+ blastp",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1788.4666748046875,
+                "top": 532.8999938964844
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput1": {
+                    "action_arguments": {
+                        "newname": "Candidate ISPs and OSPs from BLAST"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastp_wrapper/0.1.01",
+            "tool_shed_repository": {
+                "changeset_revision": "2fe07f50a41e",
+                "name": "ncbi_blast_plus",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"evalue_cutoff\": \"\\\"0.001\\\"\", \"__page__\": 0, \"adv_opts\": \"{\\\"adv_opts_selector\\\": \\\"basic\\\", \\\"__current_case__\\\": 0}\", \"__rerun_remap_job_id__\": null, \"blast_type\": \"\\\"blastp\\\"\", \"db_opts\": \"{\\\"db_opts_selector\\\": \\\"db\\\", \\\"subject\\\": \\\"\\\", \\\"histdb\\\": \\\"\\\", \\\"__current_case__\\\": 0, \\\"database\\\": \\\"spanindb01\\\"}\", \"output\": \"{\\\"out_format\\\": \\\"5\\\", \\\"__current_case__\\\": 3}\", \"query\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "945cb4e2-710f-4970-8503-6e92827fdae5",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "eb73740f-59a4-4931-bd0f-5d58c3c3cba4"
+}

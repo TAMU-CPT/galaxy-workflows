@@ -1,0 +1,300 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "Detects minor sequence changes between a mutant organism and its parent.  Designed for prokaryotes and phages.",
+    "format-version": "0.1",
+    "name": "Indel Calling",
+    "steps": {
+        "0": {
+            "annotation": "fasta",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "fasta",
+                    "name": "Fasta"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 180,
+                "top": 266.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Fasta\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset L"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 212,
+                "top": 381.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset L\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": null,
+            "id": 2,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset R"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 224,
+                "top": 465.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset R\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "bowtie2",
+            "id": 3,
+            "input_connections": {
+                "library|input_1": {
+                    "id": 1,
+                    "output_name": "output"
+                },
+                "library|input_2": {
+                    "id": 2,
+                    "output_name": "output"
+                },
+                "reference_genome|own_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Bowtie2",
+            "outputs": [
+                {
+                    "name": "output_unaligned_reads_l",
+                    "type": "fastqsanger"
+                },
+                {
+                    "name": "output_unaligned_reads_r",
+                    "type": "fastqsanger"
+                },
+                {
+                    "name": "output",
+                    "type": "bam"
+                }
+            ],
+            "position": {
+                "left": 490,
+                "top": 324.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionoutput_unaligned_reads_l": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_unaligned_reads_l"
+                },
+                "HideDatasetActionoutput_unaligned_reads_r": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_unaligned_reads_r"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "bowtie2",
+            "tool_state": "{\"__page__\": 0, \"read_group\": \"{\\\"selection\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"unaligned_file\": \"\\\"false\\\"\", \"library\": \"{\\\"min_insert\\\": \\\"0\\\", \\\"type\\\": \\\"paired\\\", \\\"input_2\\\": null, \\\"__current_case__\\\": 1, \\\"input_1\\\": null, \\\"max_insert\\\": \\\"500\\\"}\", \"reference_genome\": \"{\\\"source\\\": \\\"history\\\", \\\"__current_case__\\\": 1, \\\"own_file\\\": null}\", \"params\": \"{\\\"upto\\\": \\\"0\\\", \\\"full\\\": \\\"yes\\\", \\\"nofw_norc\\\": \\\"\\\", \\\"align_type\\\": \\\"--local\\\", \\\"skip\\\": \\\"0\\\", \\\"__current_case__\\\": 0, \\\"time\\\": \\\"\\\", \\\"performance\\\": \\\"--sensitive\\\", \\\"gbar\\\": \\\"4\\\", \\\"trim5\\\": \\\"0\\\", \\\"trim3\\\": \\\"0\\\"}\"}",
+            "tool_version": "0.2",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/sam_to_bam/sam_to_bam/1.1.4",
+            "id": 4,
+            "input_connections": {
+                "source|input1": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "source|ref_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "SAM-to-BAM",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "bam"
+                }
+            ],
+            "position": {
+                "left": 931,
+                "top": 407.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/sam_to_bam/sam_to_bam/1.1.4",
+            "tool_shed_repository": {
+                "changeset_revision": "8176b2575aa1",
+                "name": "sam_to_bam",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"source\": \"{\\\"index_source\\\": \\\"history\\\", \\\"ref_file\\\": null, \\\"input1\\\": null, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "1.1.4",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/samtools_mpileup/samtools_mpileup/0.0.2",
+            "id": 5,
+            "input_connections": {
+                "reference_source|input_bams_0|input_bam": {
+                    "id": 4,
+                    "output_name": "output1"
+                },
+                "reference_source|ref_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "MPileup",
+            "outputs": [
+                {
+                    "name": "output_mpileup",
+                    "type": "pileup"
+                },
+                {
+                    "name": "output_log",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 1285,
+                "top": 353.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput_log": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_log"
+                },
+                "HideDatasetActionoutput_mpileup": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_mpileup"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/samtools_mpileup/samtools_mpileup/0.0.2",
+            "tool_shed_repository": {
+                "changeset_revision": "5ace23a993fd",
+                "name": "samtools_mpileup",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"advanced_options\": \"{\\\"advanced_options_selector\\\": \\\"basic\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"genotype_likelihood_computation_type\": \"{\\\"genotype_likelihood_computation_type_selector\\\": \\\"perform_genotype_likelihood_computation\\\", \\\"perform_indel_calling\\\": {\\\"skip_indel_calling_above_sample_depth\\\": \\\"250\\\", \\\"__current_case__\\\": 0, \\\"perform_indel_calling_selector\\\": \\\"perform_indel_calling\\\"}, \\\"platform_list_repeat\\\": [], \\\"gap_open_sequencing_error_probability\\\": \\\"40\\\", \\\"coefficient_for_modeling_homopolymer_errors\\\": \\\"100\\\", \\\"__current_case__\\\": 0, \\\"gap_extension_sequencing_error_probability\\\": \\\"20\\\"}\", \"reference_source\": \"{\\\"ref_file\\\": null, \\\"reference_source_selector\\\": \\\"history\\\", \\\"input_bams\\\": [{\\\"__index__\\\": 0, \\\"input_bam\\\": null}], \\\"__current_case__\\\": 1}\"}",
+            "tool_version": "0.0.2",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/nilesh/bcftools/bcftools_view/0.0.1",
+            "id": 6,
+            "input_connections": {
+                "input": {
+                    "id": 5,
+                    "output_name": "output_mpileup"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "bcftools view",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "vcf"
+                }
+            ],
+            "position": {
+                "left": 1594,
+                "top": 413.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/nilesh/bcftools/bcftools_view/0.0.1",
+            "tool_shed_repository": {
+                "changeset_revision": "f2d331bf3d38",
+                "name": "bcftools",
+                "owner": "nilesh",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"A\": \"\\\"false\\\"\", \"__page__\": 0, \"c\": \"\\\"true\\\"\", \"b\": \"\\\"false\\\"\", \"e\": \"\\\"false\\\"\", \"D\": \"{\\\"seq_dictionary\\\": \\\"false\\\", \\\"__current_case__\\\": 1}\", \"G\": \"\\\"false\\\"\", \"F\": \"\\\"false\\\"\", \"i\": \"{\\\"__current_case__\\\": 1, \\\"alt_indel_snp_ratio\\\": \\\"false\\\"}\", \"__rerun_remap_job_id__\": null, \"N\": \"\\\"false\\\"\", \"p\": \"{\\\"variant_filter\\\": \\\"false\\\", \\\"__current_case__\\\": 1}\", \"S\": \"\\\"false\\\"\", \"g\": \"\\\"true\\\"\", \"t\": \"{\\\"mutation_rate\\\": \\\"false\\\", \\\"__current_case__\\\": 1}\", \"v\": \"\\\"true\\\"\", \"u\": \"\\\"false\\\"\", \"input\": \"null\"}",
+            "tool_version": "0.0.1",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": null
+                }
+            ]
+        }
+    },
+    "uuid": "ef482b6d-3497-411f-b3b0-0fe757d391cb"
+}

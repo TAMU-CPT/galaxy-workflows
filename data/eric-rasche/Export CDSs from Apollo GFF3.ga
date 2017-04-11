@@ -1,0 +1,72 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "Export CDSs from Apollo GFF3",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.export_seq",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GFF3 Feature Sequence Export",
+                    "name": "gff3_data"
+                },
+                {
+                    "description": "runtime parameter for tool GFF3 Feature Sequence Export",
+                    "name": "reference_genome"
+                }
+            ],
+            "label": null,
+            "name": "GFF3 Feature Sequence Export",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 200,
+                "top": 200
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.export_seq",
+            "tool_state": "{\"__page__\": 0, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"feature_filter\": \"\\\"nice_cds\\\"\", \"nodesc\": \"\\\"false\\\"\"}",
+            "tool_version": "1.2",
+            "type": "tool",
+            "uuid": "4ab785a1-fa42-4138-979e-e29c46164669",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.fasta.seq_trans",
+            "id": 1,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Fasta Translate",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 525,
+                "top": 200
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.fasta.seq_trans",
+            "tool_state": "{\"output\": \"{\\\"format_select\\\": \\\"protein\\\", \\\"strip_stops\\\": \\\"true\\\", \\\"__current_case__\\\": 1, \\\"table\\\": \\\"11\\\"}\", \"fasta\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "1.2",
+            "type": "tool",
+            "uuid": "51bce243-459e-4a11-9568-22aa09a9626b",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "30eb878f-e6e7-472c-a700-a5361a69a1da"
+}

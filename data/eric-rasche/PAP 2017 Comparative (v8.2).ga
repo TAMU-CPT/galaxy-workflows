@@ -1,0 +1,365 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "PAP 2017 Comparative (v8.2)",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "ncbi_eutils_efetch",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool NCBI EFetch",
+                    "name": "query_source"
+                }
+            ],
+            "label": null,
+            "name": "NCBI EFetch",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 195.4375,
+                "top": 349.8125
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "ncbi_eutils_efetch",
+            "tool_state": "{\"query_source\": \"{\\\"qss\\\": \\\"id_file\\\", \\\"__current_case__\\\": 1, \\\"id_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}}\", \"db\": \"{\\\"output_format\\\": \\\"gbwithparts-text\\\", \\\"db_select\\\": \\\"nuccore\\\", \\\"__current_case__\\\": 23}\", \"__rerun_remap_job_id__\": null, \"whole\": \"\\\"false\\\"\", \"__page__\": 0}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "4f81fa62-ca21-49df-a4d8-312393ce4b0a",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gbk.seq_export",
+            "id": 1,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GenBank Genome Sequence Export",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "GenBank Genome Sequence Export",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 381.421875,
+                "top": 480.78125
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gbk.seq_export",
+            "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"nmsrc\": \"\\\"name\\\"\", \"__page__\": 0}",
+            "tool_version": "1.2",
+            "type": "tool",
+            "uuid": "e9691ab5-3716-431f-8599-04ffa0df9248",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/fasta_filter_by_length/fasta_filter_by_length/1.1",
+            "id": 2,
+            "input_connections": {
+                "input": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Filter sequences by length",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "Filter sequences by length",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 466.4375,
+                "top": 574.796875
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fasta_filter_by_length/fasta_filter_by_length/1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "16679a7f554a",
+                "name": "fasta_filter_by_length",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"max_length\": \"\\\"760000\\\"\", \"min_length\": \"\\\"1000\\\"\"}",
+            "tool_version": "1.1",
+            "type": "tool",
+            "uuid": "e2ff1e21-190d-499b-91d0-0b75986fac9e",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "cat1",
+            "id": 3,
+            "input_connections": {
+                "queries_0|input2": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Concatenate datasets",
+                    "name": "input1"
+                }
+            ],
+            "label": null,
+            "name": "Concatenate datasets",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 727.375,
+                "top": 378.78125
+            },
+            "post_job_actions": {
+                "HideDatasetActionout_file1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_file1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "cat1",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"queries\": \"[{\\\"input2\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__index__\\\": 0}]\"}",
+            "tool_version": "1.0.0",
+            "type": "tool",
+            "uuid": "f2e215fc-c0d1-44f2-87fe-af64dab5e7a7",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "progressivemauve",
+            "id": 4,
+            "input_connections": {
+                "sequences": {
+                    "id": 3,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool progressiveMauve",
+                    "name": "sequences"
+                },
+                {
+                    "description": "runtime parameter for tool progressiveMauve",
+                    "name": "apply_backbone"
+                },
+                {
+                    "description": "runtime parameter for tool progressiveMauve",
+                    "name": "input_guide_tree"
+                },
+                {
+                    "description": "runtime parameter for tool progressiveMauve",
+                    "name": "match_input"
+                }
+            ],
+            "label": null,
+            "name": "progressiveMauve",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "xmfa"
+                },
+                {
+                    "name": "output_guide_tree_file",
+                    "type": "nhx"
+                },
+                {
+                    "name": "output_backbone_file",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 996.421875,
+                "top": 375.0625
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionoutput_backbone_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_backbone_file"
+                },
+                "HideDatasetActionoutput_guide_tree_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_guide_tree_file"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "progressivemauve",
+            "tool_state": "{\"skip_gapped_alignment\": \"\\\"false\\\"\", \"weight\": \"\\\"0\\\"\", \"conservation_distance_scale\": \"\\\"0.5\\\"\", \"no_weight_scaling\": \"\\\"false\\\"\", \"hmm_p_go_homologous\": \"\\\"1e-05\\\"\", \"sequences\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"max_breakpoint_distance_scale\": \"\\\"0.5\\\"\", \"coding_seeds\": \"\\\"false\\\"\", \"mums\": \"\\\"false\\\"\", \"__rerun_remap_job_id__\": null, \"min_scaled_penalty\": \"\\\"0\\\"\", \"scoring_scheme\": \"\\\"sp\\\"\", \"output_backbone\": \"\\\"true\\\"\", \"no_recursion\": \"\\\"false\\\"\", \"gap_extend\": \"\\\"0\\\"\", \"disable_backbone\": \"\\\"false\\\"\", \"seed_family\": \"\\\"false\\\"\", \"apply_backbone\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"repeat_penalty\": \"\\\"negative\\\"\", \"hmm_p_go_unrelated\": \"\\\"1e-09\\\"\", \"input_guide_tree\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"seed_weight\": \"\\\"0\\\"\", \"max_gapped_aligner_length\": \"\\\"0\\\"\", \"bp_dist_estimate_min_score\": \"\\\"0\\\"\", \"island_gap_size\": \"\\\"20\\\"\", \"skip_refinement\": \"\\\"false\\\"\", \"collinear\": \"\\\"false\\\"\", \"match_input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"output_guide_tree\": \"\\\"true\\\"\", \"solid_seeds\": \"\\\"false\\\"\", \"gap_open\": \"\\\"0\\\"\", \"hmm_identity\": \"\\\"0.7\\\"\"}",
+            "tool_version": "2.4.0.0",
+            "type": "tool",
+            "uuid": "c7c13ea6-01ac-4c0d-be96-5cf4c995eba1",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.mist3",
+            "id": 5,
+            "input_connections": {
+                "fasta_files": {
+                    "id": 3,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool MIST v3",
+                    "name": "fasta_files"
+                }
+            ],
+            "label": null,
+            "name": "MIST v3",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1012.875,
+                "top": 649.984375
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "MIST Plot"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.mist3",
+            "tool_state": "{\"plot_type\": \"\\\"1vn\\\"\", \"matrix\": \"\\\"edna\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"zoom\": \"\\\"50\\\"\", \"window\": \"\\\"10\\\"\", \"fasta_files\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "3.0",
+            "type": "tool",
+            "uuid": "aa228ea6-7147-456b-9de7-b1d53540a5c1",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "0c2c495f-1de0-485b-8520-098114db3437"
+                }
+            ]
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "xmfa2tbl",
+            "id": 6,
+            "input_connections": {
+                "sequences": {
+                    "id": 3,
+                    "output_name": "out_file1"
+                },
+                "xmfa": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Convert XMFA to percent identity table",
+                    "name": "xmfa"
+                },
+                {
+                    "description": "runtime parameter for tool Convert XMFA to percent identity table",
+                    "name": "sequences"
+                }
+            ],
+            "label": null,
+            "name": "Convert XMFA to percent identity table",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1195.90625,
+                "top": 200
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "XMFA Percent Identity Table"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "xmfa2tbl",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"dice\": \"\\\"true\\\"\", \"xmfa\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"sequences\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "2.4.0.0",
+            "type": "tool",
+            "uuid": "4c9f5d6f-72b0-4b91-ad5a-90b3e15f7af6",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "d51cb90d-6542-4b53-9153-fdd91fe3847e"
+                }
+            ]
+        }
+    },
+    "uuid": "e0c04772-2e27-4053-b33a-eda1657b8cf2"
+}

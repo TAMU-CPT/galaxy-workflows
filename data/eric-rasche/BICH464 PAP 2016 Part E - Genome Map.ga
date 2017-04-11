@@ -1,0 +1,378 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "Apollo Genome Mapper",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.export",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Retrieve Data",
+            "outputs": [
+                {
+                    "name": "gff_out",
+                    "type": "gff3"
+                },
+                {
+                    "name": "fasta_out",
+                    "type": "fasta"
+                },
+                {
+                    "name": "json_out",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 290.5,
+                "top": 408.46875
+            },
+            "post_job_actions": {
+                "HideDatasetActionfasta_out": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "fasta_out"
+                },
+                "HideDatasetActiongff_out": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "gff_out"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.export",
+            "tool_state": "{\"cn_source\": \"{\\\"__current_case__\\\": 2, \\\"source_select\\\": \\\"direct\\\"}\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.4",
+            "type": "tool",
+            "uuid": "5b0993a7-6581-4e3e-acdf-07bdd430d73d",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff.gff2gb",
+            "id": 1,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "GFF3 to GenBank",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "genbank"
+                }
+            ],
+            "position": {
+                "left": 620.5,
+                "top": 295.46875
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff.gff2gb",
+            "tool_state": "{\"__page__\": 0, \"fasta\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"gff3\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "3c8f5e4e-66c4-4ad2-9d33-e5bdc76a9d76",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "TransTermHP",
+            "id": 2,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 0,
+                    "output_name": "gff_out"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool TransTermHP",
+                    "name": "reference_genome"
+                },
+                {
+                    "description": "runtime parameter for tool TransTermHP",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "TransTermHP",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 623.5,
+                "top": 432.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "Terminators FIXED"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "TransTermHP",
+            "tool_state": "{\"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "c0caaac6-f2b3-4519-86ad-6be00c1eac98",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.fetch_jbrowse",
+            "id": 3,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Retrieve JBrowse",
+            "outputs": [
+                {
+                    "name": "jbrowse",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 625.5,
+                "top": 599.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionjbrowse": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "jbrowse"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.fetch_jbrowse",
+            "tool_state": "{\"cn_source\": \"{\\\"cn_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 0, \\\"source_select\\\": \\\"auto\\\"}\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.4",
+            "type": "tool",
+            "uuid": "82f6a9fa-9987-4d0d-abdb-7983bc7193b9",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_genbank_tools/Color/1.94",
+            "id": 4,
+            "input_connections": {
+                "file": {
+                    "id": 1,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Color",
+                    "name": "file"
+                }
+            ],
+            "label": null,
+            "name": "Color",
+            "outputs": [
+                {
+                    "name": "genbank",
+                    "type": "Genbank"
+                }
+            ],
+            "position": {
+                "left": 827.5,
+                "top": 292.46875
+            },
+            "post_job_actions": {
+                "HideDatasetActiongenbank": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "genbank"
+                },
+                "RenameDatasetActiongenbank": {
+                    "action_arguments": {
+                        "newname": "Colored GenBank File"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "genbank"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_genbank_tools/Color/1.94",
+            "tool_shed_repository": {
+                "changeset_revision": "aad5ace58ed4",
+                "name": "cpt_genbank_tools",
+                "owner": "esr",
+                "tool_shed": "geiger.tamu.edu/toolshed"
+            },
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"genbank_format\": \"\\\"Genbank\\\"\", \"mode\": \"\\\"remove\\\"\", \"file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "1.94",
+            "type": "tool",
+            "uuid": "a8611f4f-1641-4a66-aea8-3a56b198500b",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "jbrowse",
+            "id": 5,
+            "input_connections": {
+                "action|update_jbrowse": {
+                    "id": 3,
+                    "output_name": "jbrowse"
+                },
+                "track_groups_0|data_tracks_0|data_format|annotation": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool JBrowse",
+                    "name": "action"
+                },
+                {
+                    "description": "runtime parameter for tool JBrowse",
+                    "name": "action"
+                }
+            ],
+            "label": null,
+            "name": "JBrowse",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 850,
+                "top": 429.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "jbrowse",
+            "tool_state": "{\"__page__\": 0, \"standalone\": \"\\\"false\\\"\", \"__rerun_remap_job_id__\": null, \"track_groups\": \"[{\\\"category\\\": \\\"TransTerm - v2\\\", \\\"__index__\\\": 0, \\\"data_tracks\\\": [{\\\"__index__\\\": 0, \\\"data_format\\\": {\\\"match_part\\\": {\\\"match_part_select\\\": \\\"false\\\", \\\"__current_case__\\\": 1}, \\\"jbstyle\\\": {\\\"style_classname\\\": \\\"feature\\\", \\\"style_description\\\": \\\"note,description\\\", \\\"style_height\\\": \\\"100px\\\", \\\"style_label\\\": \\\"name,id\\\"}, \\\"track_visibility\\\": \\\"default_off\\\", \\\"jbcolor_scale\\\": {\\\"color_score\\\": {\\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"__current_case__\\\": 0, \\\"color_score_select\\\": \\\"none\\\"}}, \\\"__current_case__\\\": 2, \\\"track_class\\\": \\\"JBrowse/View/Track/CanvasFeatures\\\", \\\"annotation\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"data_format_select\\\": \\\"gene_calls\\\"}}]}]\", \"action\": \"{\\\"action_select\\\": \\\"update\\\", \\\"update_jbrowse\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"genomes\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"gencode\": \"\\\"11\\\"\", \"uglyTestingHack\": \"\\\"\\\"\", \"jbgen\": \"{\\\"trackPadding\\\": \\\"20\\\", \\\"show_tracklist\\\": \\\"true\\\", \\\"show_overview\\\": \\\"true\\\", \\\"show_nav\\\": \\\"true\\\", \\\"aboutDescription\\\": \\\"\\\", \\\"defaultLocation\\\": \\\"\\\", \\\"hideGenomeOptions\\\": \\\"false\\\", \\\"shareLink\\\": \\\"true\\\", \\\"show_menu\\\": \\\"true\\\"}\"}",
+            "tool_version": "0.5",
+            "type": "tool",
+            "uuid": "fc601982-5181-4393-a094-de11d92523e5",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_mapping/Genome_Map/0.0.1",
+            "id": 6,
+            "input_connections": {
+                "file": {
+                    "id": 4,
+                    "output_name": "genbank"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Genome Mapper",
+                    "name": "file"
+                }
+            ],
+            "label": null,
+            "name": "Genome Mapper",
+            "outputs": [
+                {
+                    "name": "genome_map",
+                    "type": "svg"
+                }
+            ],
+            "position": {
+                "left": 1119.5,
+                "top": 295.46875
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_mapping/Genome_Map/0.0.1",
+            "tool_shed_repository": {
+                "changeset_revision": "ee71f294f198",
+                "name": "cpt_mapping",
+                "owner": "esr",
+                "tool_shed": "geiger.tamu.edu/toolshed"
+            },
+            "tool_state": "{\"double_line_for_overlap\": \"\\\"true\\\"\", \"label_query\": \"\\\"!contains:\\\\\\\"Hypothetical\\\\\\\" key:\\\\\\\"CDS,tRNA\\\\\\\" tag:\\\\\\\"locus_tag\\\\\\\"\\\"\", \"file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"rows\": \"\\\"3\\\"\", \"__rerun_remap_job_id__\": null, \"label\": \"\\\"true\\\"\", \"separate_strands\": \"\\\"true\\\"\", \"opacity\": \"\\\"0.7\\\"\", \"justification\": \"\\\"justify\\\"\", \"label_shrink_mode\": \"\\\"shrink\\\"\", \"label_callouts\": \"\\\"true\\\"\", \"split_factor\": \"\\\"1.04025\\\"\", \"repeat_label_numeric_features\": \"[]\", \"label_text_source\": \"\\\"product\\\"\", \"width_mode\": \"\\\"static\\\"\", \"label_position\": \"\\\"above\\\"\", \"label_from\": \"\\\"custom\\\"\", \"inter_line_separation\": \"\\\"200\\\"\", \"y_offset\": \"\\\"100\\\"\", \"x_offset\": \"\\\"30\\\"\", \"width_value\": \"\\\"800\\\"\", \"view\": \"\\\"alt_artemis\\\"\"}",
+            "tool_version": "0.0.1",
+            "type": "tool",
+            "uuid": "178f4388-0480-4abb-89d2-65d15ac30e80",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "genome_map",
+                    "uuid": "128504ad-8f5e-416d-8f83-283859dbfcaf"
+                }
+            ]
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.create_or_update",
+            "id": 7,
+            "input_connections": {
+                "jbrowse": {
+                    "id": 5,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Create or Update Organism",
+                    "name": "jbrowse"
+                }
+            ],
+            "label": null,
+            "name": "Create or Update Organism",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 1195.5,
+                "top": 486.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.create_or_update",
+            "tool_state": "{\"__page__\": 0, \"genus\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"public\": \"\\\"false\\\"\", \"cn_source\": \"{\\\"cn_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 0, \\\"source_select\\\": \\\"auto\\\"}\", \"blatdb\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"jbrowse\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"species\": \"\\\"\\\"\"}",
+            "tool_version": "1.5",
+            "type": "tool",
+            "uuid": "5a003a9a-68e4-4262-9b7d-c36a3c65f4f2",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "94059d2b-ac0f-4bc8-9054-50bdc1eca784"
+}

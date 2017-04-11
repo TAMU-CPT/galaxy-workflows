@@ -1,0 +1,174 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "Copy of 'Periplasmic Extraction v3'",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "I Spanins"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 267,
+                "top": 447
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"I Spanins\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "f1c8d7dd-37ce-4878-9e0e-c0e5954ad742",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_external_programs/TMHMM/1.0.2",
+            "id": 1,
+            "input_connections": {
+                "infile": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "TMHMM",
+            "outputs": [
+                {
+                    "name": "html_file",
+                    "type": "data"
+                }
+            ],
+            "position": {
+                "left": 558.5,
+                "top": 513
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_external_programs/TMHMM/1.0.2",
+            "tool_shed_repository": {
+                "changeset_revision": "cc09819aad48",
+                "name": "cpt_external_programs",
+                "owner": "esr",
+                "tool_shed": "geiger.tamu.edu/toolshed"
+            },
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"use_html\": \"\\\"false\\\"\", \"infile\": \"null\", \"reportempty\": \"\\\"false\\\"\"}",
+            "tool_version": "1.0.2",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "html_file",
+                    "uuid": null
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_oneoff_tools/tmhmm_post_process/1.94",
+            "id": 2,
+            "input_connections": {
+                "fasta": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "file": {
+                    "id": 1,
+                    "output_name": "html_file"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "TMHMM+Fasta processing",
+            "outputs": [
+                {
+                    "name": "results",
+                    "type": "Fasta"
+                },
+                {
+                    "name": "last_ones",
+                    "type": "Fasta"
+                }
+            ],
+            "position": {
+                "left": 831.5,
+                "top": 444
+            },
+            "post_job_actions": {
+                "HideDatasetActionlast_ones": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "last_ones"
+                },
+                "HideDatasetActionresults": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "results"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "geiger.tamu.edu/toolshed/repos/esr/cpt_oneoff_tools/tmhmm_post_process/1.94",
+            "tool_shed_repository": {
+                "changeset_revision": "266f8943bd47",
+                "name": "cpt_oneoff_tools",
+                "owner": "esr",
+                "tool_shed": "geiger.tamu.edu/toolshed"
+            },
+            "tool_state": "{\"min_length\": \"\\\"0\\\"\", \"min_exp_num_first_60\": \"\\\"0\\\"\", \"min_num_predict_tmhs\": \"\\\"0\\\"\", \"__page__\": 0, \"max_exp_aas\": \"\\\"100\\\"\", \"max_num_predict_tmhs\": \"\\\"100\\\"\", \"min_total_prob_n_in\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"max_exp_num_first_60\": \"\\\"100\\\"\", \"last_ones_format\": \"\\\"Fasta\\\"\", \"min_exp_aas\": \"\\\"0\\\"\", \"file\": \"null\", \"max_total_prob_n_in\": \"\\\"100\\\"\", \"max_length\": \"\\\"300\\\"\", \"fasta\": \"null\", \"results_format\": \"\\\"Fasta\\\"\"}",
+            "tool_version": "1.94",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "fasta2tab",
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "last_ones"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "FASTA-to-Tabular",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1111,
+                "top": 458
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "fasta2tab",
+            "tool_state": "{\"input\": \"null\", \"keep_first\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"descr_columns\": \"\\\"1\\\"\", \"__page__\": 0}",
+            "tool_version": "1.1.0",
+            "type": "tool",
+            "uuid": "3f36d3f6-ce32-4fe3-9c7a-29a1820f8294",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "2d5b17af-fae9-43db-b274-5054f9a4b075"
+}

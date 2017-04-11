@@ -1,0 +1,73 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "jenkins-wf-test-fail",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 183,
+                "top": 196.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "c5b5c0dd-dac4-4cd6-92d7-61e97dc6f3df",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/saskia-hiltemann/ireport/iReport/1",
+            "id": 1,
+            "input_connections": {
+                "tabs_0|content_0|filetype|item": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "iReport",
+            "outputs": [
+                {
+                    "name": "report",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 390,
+                "top": 156.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/saskia-hiltemann/ireport/iReport/1",
+            "tool_shed_repository": {
+                "changeset_revision": "42076db43d42",
+                "name": "ireport",
+                "owner": "saskia-hiltemann",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"tabs\": \"[{\\\"content\\\": [{\\\"__index__\\\": 0, \\\"filetype\\\": {\\\"ireport\\\": \\\"false\\\", \\\"itemtype\\\": \\\"link\\\", \\\"item2\\\": \\\"asdf\\\", \\\"break\\\": \\\"false\\\", \\\"item\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 8}}], \\\"__index__\\\": 0, \\\"tabtitle\\\": \\\"some-tab\\\"}]\", \"coverimage\": \"\\\"\\\"\", \"label\": \"\\\"asdfasd\\\"\", \"minwidth\": \"\\\"1200\\\"\", \"proxy\": \"\\\"galaxy\\\"\", \"__rerun_remap_job_id__\": null, \"localhost\": \"\\\"https://bioinf-galaxian.erasmusmc.nl/galaxy\\\"\"}",
+            "tool_version": "1",
+            "type": "tool",
+            "uuid": "764eb18c-a9dc-46fb-b83b-a3c9a9fdc782",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "383706f4-d534-43af-bcff-7a4a43ba3e01"
+}

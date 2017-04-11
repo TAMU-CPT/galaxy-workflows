@@ -1,0 +1,155 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "BICH464 PAP2016 Genome Overview",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Annotations"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 207,
+                "top": 218
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Annotations\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "950e94df-e5b0-48dc-8a23-8f02261c30ba",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Genome"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 200,
+                "top": 303
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Genome\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "e4c6fdc8-b7ef-416b-8ca1-1745c805c2a2",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.phage.annotation_validator",
+            "id": 2,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Phage QC",
+                    "name": "gff3_data"
+                },
+                {
+                    "description": "runtime parameter for tool Phage QC",
+                    "name": "reference_genome"
+                }
+            ],
+            "label": null,
+            "name": "Phage QC",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                },
+                {
+                    "name": "gff3",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 515.5,
+                "top": 200
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.phage.annotation_validator",
+            "tool_state": "{\"__page__\": 0, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"report_format\": \"\\\"phageqc_report_464.html\\\"\", \"eod\": \"\\\"25\\\"\", \"sd_min\": \"\\\"5\\\"\", \"eodd\": \"\\\"50\\\"\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"min_gene\": \"\\\"25\\\"\", \"egdd\": \"\\\"200\\\"\", \"sd_max\": \"\\\"15\\\"\", \"__rerun_remap_job_id__\": null, \"egd\": \"\\\"50\\\"\"}",
+            "tool_version": "1.9.0",
+            "type": "tool",
+            "uuid": "d9e7565b-1680-4780-8e94-71de911e1e56",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.phage.annotation_table",
+            "id": 3,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Annotation Table",
+                    "name": "reference_genome"
+                },
+                {
+                    "description": "runtime parameter for tool Annotation Table",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "Annotation Table",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 523,
+                "top": 384
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.phage.annotation_table",
+            "tool_state": "{\"__page__\": 0, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"report_format\": \"\\\"phageqc_report_annotation_table.html\\\"\", \"__rerun_remap_job_id__\": null, \"cols\": \"[\\\"id\\\", \\\"name\\\", \\\"location\\\", \\\"strand\\\", \\\"length\\\", \\\"sd_seq\\\", \\\"notes\\\", \\\"description\\\", \\\"product\\\", \\\"dbxrefs\\\", \\\"qualifiers\\\"]\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\"}",
+            "tool_version": "3.1",
+            "type": "tool",
+            "uuid": "776007c2-6557-47e7-a156-a8e6dde1c498",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "516b7d77-7f14-4ee4-92a2-6361f438e675"
+}

@@ -1,0 +1,310 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "PAP 2017 Update NT",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Genome"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 131,
+                "top": 434
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Genome\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "442ec191-4fda-415b-9eba-20a8585f730f",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "ccc4ec63-98fb-41fc-90a3-c7294cf9095f"
+                }
+            ]
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Metadata"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 245,
+                "top": 542
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Metadata\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "4aeb7f11-1655-4d32-8087-19d79f72d644",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "917dbd04-4472-4b67-93c7-9eff5c2b32ed"
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastn_wrapper/0.1.01",
+            "id": 2,
+            "input_connections": {
+                "query": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool NCBI BLAST+ blastn",
+                    "name": "query"
+                }
+            ],
+            "label": null,
+            "name": "NCBI BLAST+ blastn",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 263.5,
+                "top": 191
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastn_wrapper/0.1.01",
+            "tool_shed_repository": {
+                "changeset_revision": "2fe07f50a41e",
+                "name": "ncbi_blast_plus",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"evalue_cutoff\": \"\\\"0.001\\\"\", \"__page__\": 0, \"adv_opts\": \"{\\\"adv_opts_selector\\\": \\\"basic\\\", \\\"__current_case__\\\": 0}\", \"__rerun_remap_job_id__\": null, \"blast_type\": \"\\\"dc-megablast\\\"\", \"db_opts\": \"{\\\"db_opts_selector\\\": \\\"db\\\", \\\"subject\\\": \\\"\\\", \\\"histdb\\\": \\\"\\\", \\\"__current_case__\\\": 0, \\\"database\\\": \\\"nt_2017.15\\\"}\", \"output\": \"{\\\"out_format\\\": \\\"5\\\", \\\"__current_case__\\\": 3}\", \"query\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "0.1.01",
+            "type": "tool",
+            "uuid": "2a97c9de-ca3a-4688-a070-84a865dca6d9",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.fetch_jbrowse",
+            "id": 3,
+            "input_connections": {
+                "org_source|org_file": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Retrieve JBrowse",
+                    "name": "org_source"
+                }
+            ],
+            "label": null,
+            "name": "Retrieve JBrowse",
+            "outputs": [
+                {
+                    "name": "jbrowse",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 469,
+                "top": 536
+            },
+            "post_job_actions": {
+                "HideDatasetActionjbrowse": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "jbrowse"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.fetch_jbrowse",
+            "tool_state": "{\"org_source\": \"{\\\"org_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 2, \\\"source_select\\\": \\\"auto_json\\\"}\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "3.2",
+            "type": "tool",
+            "uuid": "3df445d0-46ce-439c-a113-15c969886ce9",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "blastnxml_to_gapped_gff3",
+            "id": 4,
+            "input_connections": {
+                "blast_xml": {
+                    "id": 2,
+                    "output_name": "output1"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool BlastXML NT to gapped GFF3",
+                    "name": "blast_xml"
+                }
+            ],
+            "label": null,
+            "name": "BlastXML NT to gapped GFF3",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 500,
+                "top": 298
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "blastnxml_to_gapped_gff3",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"blast_xml\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "1.1",
+            "type": "tool",
+            "uuid": "441048a1-2e4d-4a5f-8754-0a5625a78ba7",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "jbrowse-cpt",
+            "id": 5,
+            "input_connections": {
+                "action|update_jbrowse": {
+                    "id": 3,
+                    "output_name": "jbrowse"
+                },
+                "track_groups_0|data_tracks_0|data_format|annotation": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool JBrowse 0.6.2+cpt",
+                    "name": "action"
+                },
+                {
+                    "description": "runtime parameter for tool JBrowse 0.6.2+cpt",
+                    "name": "action"
+                }
+            ],
+            "label": null,
+            "name": "JBrowse 0.6.2+cpt",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 801.5,
+                "top": 421
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "jbrowse-cpt",
+            "tool_state": "{\"__page__\": 0, \"standalone\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"track_groups\": \"[{\\\"category\\\": \\\"#date# Functional Annotation / Blast / Nucleotide\\\", \\\"__index__\\\": 0, \\\"data_tracks\\\": [{\\\"__index__\\\": 0, \\\"data_format\\\": {\\\"match_part\\\": {\\\"match_part_select\\\": \\\"true\\\", \\\"__current_case__\\\": 0, \\\"name\\\": \\\"match\\\"}, \\\"jbstyle\\\": {\\\"style_classname\\\": \\\"feature\\\", \\\"style_description\\\": \\\"note\\\", \\\"style_height\\\": \\\"10\\\", \\\"max_height\\\": \\\"6000\\\", \\\"style_label\\\": \\\"Hit_titles\\\"}, \\\"track_visibility\\\": \\\"default_off\\\", \\\"jbcolor_scale\\\": {\\\"color_score\\\": {\\\"score_scales\\\": {\\\"scale_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"color_scheme\\\": {\\\"score_scheme\\\": \\\"opacity\\\", \\\"color\\\": {\\\"color_select\\\": \\\"automatic\\\", \\\"__current_case__\\\": 0}, \\\"__current_case__\\\": 0}, \\\"score_scaling\\\": \\\"blast\\\", \\\"__current_case__\\\": 1, \\\"color_score_select\\\": \\\"score\\\"}}, \\\"override_apollo_drag\\\": \\\"True\\\", \\\"__current_case__\\\": 2, \\\"override_apollo_plugins\\\": \\\"True\\\", \\\"track_class\\\": \\\"BlastView/View/Track/CanvasFeatures\\\", \\\"annotation\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"data_format_select\\\": \\\"gene_calls\\\"}}]}]\", \"action\": \"{\\\"action_select\\\": \\\"update\\\", \\\"update_jbrowse\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"genomes\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"gencode\": \"\\\"11\\\"\", \"uglyTestingHack\": \"\\\"\\\"\", \"jbgen\": \"{\\\"trackPadding\\\": \\\"20\\\", \\\"show_tracklist\\\": \\\"true\\\", \\\"show_overview\\\": \\\"true\\\", \\\"show_nav\\\": \\\"true\\\", \\\"aboutDescription\\\": \\\"\\\", \\\"defaultLocation\\\": \\\"\\\", \\\"hideGenomeOptions\\\": \\\"false\\\", \\\"shareLink\\\": \\\"true\\\", \\\"show_menu\\\": \\\"true\\\"}\"}",
+            "tool_version": "0.6.2+cpt",
+            "type": "tool",
+            "uuid": "251ceaae-3a22-48b0-b001-4d2f5bd483c0",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.create_or_update",
+            "id": 6,
+            "input_connections": {
+                "jbrowse": {
+                    "id": 5,
+                    "output_name": "output"
+                },
+                "org_source|org_file": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Create or Update Organism",
+                    "name": "org_source"
+                },
+                {
+                    "description": "runtime parameter for tool Create or Update Organism",
+                    "name": "jbrowse"
+                }
+            ],
+            "label": null,
+            "name": "Create or Update Organism",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 988.5,
+                "top": 631
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.create_or_update",
+            "tool_state": "{\"__page__\": 0, \"jbrowse\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"org_source\": \"{\\\"org_file\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 2, \\\"source_select\\\": \\\"auto_json\\\"}\", \"__rerun_remap_job_id__\": null, \"species\": \"\\\"\\\"\", \"genus\": \"\\\"\\\"\", \"public\": \"\\\"false\\\"\"}",
+            "tool_version": "3.2",
+            "type": "tool",
+            "uuid": "1f225db9-2024-455c-b910-a9f30ad47563",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "90d56d2f-213b-458a-88ef-b96f37117adf"
+}

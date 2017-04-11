@@ -1,0 +1,72 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "jenkins-wf-test-pass",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 183,
+                "top": 196.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "c5b5c0dd-dac4-4cd6-92d7-61e97dc6f3df",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "secure_hash_message_digest",
+            "id": 1,
+            "input_connections": {
+                "input1": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Secure Hash / Message Digest",
+                    "name": "input1"
+                }
+            ],
+            "label": null,
+            "name": "Secure Hash / Message Digest",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 436.5,
+                "top": 241.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "secure_hash_message_digest",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"algorithms\": \"[\\\"md5\\\"]\"}",
+            "tool_version": "0.0.1",
+            "type": "tool",
+            "uuid": "7572b9b3-d80a-40c3-8ecb-582760a77ebf",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "52d36279-f828-4aa0-9fe6-657081fbd31a"
+}

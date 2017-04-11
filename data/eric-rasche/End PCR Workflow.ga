@@ -1,0 +1,137 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "End PCR Workflow",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Fasta Genome Sequences"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 104,
+                "top": 245.5
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Fasta Genome Sequences\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "d29a3ea7-c320-46c1-8a1c-710e92f9407c",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "fasta2tab",
+            "id": 1,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "FASTA-to-Tabular",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 301.5,
+                "top": 284.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "fasta2tab",
+            "tool_state": "{\"input\": \"null\", \"keep_first\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"descr_columns\": \"\\\"1\\\"\", \"__page__\": 0}",
+            "tool_version": "1.1.0",
+            "type": "tool",
+            "uuid": "afae1c42-0ca7-4b8e-9144-77b0282e84dc",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "Select first 1000 and last 1000 bases, and swap their order",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/jjohnson/regex_find_replace/regexColumn1/0.1.0",
+            "id": 2,
+            "input_connections": {
+                "input": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Column Regex Find And Replace",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 473.5,
+                "top": 388.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/jjohnson/regex_find_replace/regexColumn1/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "9ea374bb0350",
+                "name": "regex_find_replace",
+                "owner": "jjohnson",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"field\": \"\\\"2\\\"\", \"__rerun_remap_job_id__\": null, \"checks\": \"[{\\\"__index__\\\": 0, \\\"replacement\\\": \\\"\\\\\\\\3\\\\\\\\1\\\", \\\"pattern\\\": \\\"^(.{1000})(.*)(.{1000})$\\\"}]\", \"input\": \"null\"}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "0ec0498e-d75a-4625-be47-39a323155513",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "tab2fasta",
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Tabular-to-FASTA",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 733.5,
+                "top": 245.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "tab2fasta",
+            "tool_state": "{\"title_col\": \"null\", \"input\": \"null\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"seq_col\": \"null\"}",
+            "tool_version": "1.1.0",
+            "type": "tool",
+            "uuid": "22294bf3-c529-4027-936d-1ade5fdc8c96",
+            "workflow_outputs": []
+        }
+    },
+    "uuid": "85b3c701-acaa-4bc5-bbf9-2cca47032ed0"
+}

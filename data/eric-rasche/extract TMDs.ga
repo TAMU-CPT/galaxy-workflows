@@ -1,0 +1,413 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "extract TMDs",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 115.5,
+                "top": 263
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "b95b30d4-0b31-4295-80b6-4cab20d48056",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gbk.seq_export",
+            "id": 1,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "GenBank Genome Sequence Export",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 262,
+                "top": 338
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                },
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "#{positional_1}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gbk.seq_export",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"positional_1\": \"null\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "12a90bb7-5a79-4048-8f45-6bf871b01283",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "get_orfs_or_cdss",
+            "id": 2,
+            "input_connections": {
+                "input_file": {
+                    "id": 1,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Get open reading frames (ORFs) or coding sequences (CDSs)",
+            "outputs": [
+                {
+                    "name": "out_nuc_file",
+                    "type": "fasta"
+                },
+                {
+                    "name": "out_prot_file",
+                    "type": "fasta"
+                },
+                {
+                    "name": "out_bed_file",
+                    "type": "bed6"
+                },
+                {
+                    "name": "out_gff3_file",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 484,
+                "top": 486
+            },
+            "post_job_actions": {
+                "HideDatasetActionout_bed_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_bed_file"
+                },
+                "HideDatasetActionout_nuc_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_nuc_file"
+                },
+                "HideDatasetActionout_prot_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_prot_file"
+                },
+                "RenameDatasetActionout_prot_file": {
+                    "action_arguments": {
+                        "newname": "#{input_file}.pfa"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "out_prot_file"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "get_orfs_or_cdss",
+            "tool_state": "{\"__page__\": 0, \"ends\": \"\\\"closed\\\"\", \"input_file\": \"null\", \"__rerun_remap_job_id__\": null, \"min_len\": \"\\\"20\\\"\", \"ftype\": \"\\\"CDS\\\"\", \"mode\": \"\\\"all\\\"\", \"table\": \"\\\"11\\\"\", \"strand\": \"\\\"both\\\"\"}",
+            "tool_version": "0.1.1",
+            "type": "tool",
+            "uuid": "f251dc48-190d-4301-92dc-d351df15a904",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "TMHMM_to_gff3",
+            "id": 3,
+            "input_connections": {
+                "infile": {
+                    "id": 2,
+                    "output_name": "out_prot_file"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "TMHMM (GFF3)",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                },
+                {
+                    "name": "bw_i",
+                    "type": "wig"
+                },
+                {
+                    "name": "bw_o",
+                    "type": "wig"
+                },
+                {
+                    "name": "bw_m",
+                    "type": "wig"
+                }
+            ],
+            "position": {
+                "left": 782,
+                "top": 395
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{infile}.tmhmm.fa"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "TMHMM_to_gff3",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"infile\": \"null\"}",
+            "tool_version": "1.1.0",
+            "type": "tool",
+            "uuid": "ce998bcd-d137-4314-8b05-ec18e510cfa4",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "bed2gff1",
+            "id": 4,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "out_bed_file"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "BED-to-GFF",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "gff"
+                }
+            ],
+            "position": {
+                "left": 795,
+                "top": 644
+            },
+            "post_job_actions": {
+                "HideDatasetActionout_file1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_file1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "bed2gff1",
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "2.0.0",
+            "type": "tool",
+            "uuid": "b5aae7a3-252d-41ad-8bec-5e904a985e68",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.reformat",
+            "id": 5,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Reformat GFF3 File",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 935,
+                "top": 514
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.reformat",
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "ec26823a-dd4e-4d85-b000-7b2d81cb79bb",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/jjohnson/regex_find_replace/regexColumn1/0.1.0",
+            "id": 6,
+            "input_connections": {
+                "input": {
+                    "id": 5,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Column Regex Find And Replace",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1018,
+                "top": 664
+            },
+            "post_job_actions": {
+                "HideDatasetActionout_file1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_file1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/jjohnson/regex_find_replace/regexColumn1/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "9ea374bb0350",
+                "name": "regex_find_replace",
+                "owner": "jjohnson",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"field\": \"\\\"9\\\"\", \"__rerun_remap_job_id__\": null, \"checks\": \"[{\\\"__index__\\\": 0, \\\"replacement\\\": \\\"ID=\\\\\\\\1\\\", \\\"pattern\\\": \\\"(.*)=true\\\"}]\", \"input\": \"null\"}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "f1ca104f-c24d-43ba-9509-c3890d8d92b9",
+            "workflow_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "gff3.rebase",
+            "id": 7,
+            "input_connections": {
+                "child": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "parent": {
+                    "id": 6,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Rebase GFF3 features",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 1099,
+                "top": 386
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                },
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "#{child}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "gff3.rebase",
+            "tool_state": "{\"__page__\": 0, \"interpro\": \"\\\"false\\\"\", \"parent\": \"null\", \"protein2dna\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"child\": \"null\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "f1903e77-ae7a-4d4d-99c9-7f4e2e55285a",
+            "workflow_outputs": []
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.export_seq",
+            "id": 8,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 7,
+                    "output_name": "default"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 1,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "GFF3 Feature Sequence Export",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 1270.5,
+                "top": 216
+            },
+            "post_job_actions": {
+                "RenameDatasetActiondefault": {
+                    "action_arguments": {
+                        "newname": "#{genome_fasta}.tmds.fa"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.export_seq",
+            "tool_state": "{\"__page__\": 0, \"feature_filter\": \"\\\"Chain\\\"\", \"__rerun_remap_job_id__\": null, \"gff3_data\": \"null\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": null, \\\"__current_case__\\\": 1}\"}",
+            "tool_version": "1.0.1",
+            "type": "tool",
+            "uuid": "066c74db-54a8-4016-b2ac-86a36d0cd3e4",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "default",
+                    "uuid": null
+                }
+            ]
+        }
+    },
+    "uuid": "739f7073-96d8-4e6b-b944-ed7fd5f6ada9"
+}
