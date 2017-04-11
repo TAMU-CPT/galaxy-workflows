@@ -1,0 +1,5 @@
+bioblend==0.8.0
+xunit-wrapper
+future
+justbackoff
+tqdm
