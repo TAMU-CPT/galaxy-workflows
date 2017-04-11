@@ -25,7 +25,7 @@ def extract_existing_wf_ids():
     for wf in glob.glob("data/*/*.ga"):
         with open(wf, 'r') as handle:
             data = json.load(handle)
-            existing_workflow_ids[data['uuid']] = data['name']
+            existing_workflow_ids[data['id']] = data['name']
     return existing_workflow_ids
 
 
@@ -45,27 +45,31 @@ def __main__():
     args = parser.parse_args()
 
     existing_wf = extract_existing_wf_ids()
+    import pprint; pprint.pprint(existing_wf)
 
     gi = galaxy.GalaxyInstance(args.url, args.key)
-    for wf in tqdm(gi.workflows.get_workflows()):
-        # if 'Update NT' not in wf['name']: continue
+    for wf in gi.workflows.get_workflows():
+        if 'PAP 2017' not in wf['name']: continue
 
         if not os.path.exists(wf['owner']):
             os.makedirs(wf['owner'])
 
-        if wf['latest_workflow_uuid'] in existing_wf:
-            original_name = existing_wf[wf['latest_workflow_uuid']]
+        if wf['id'] in existing_wf:
+            original_name = existing_wf[wf['id']]
             # If the name has changed, `git mv`
             if original_name != wf['name']:
-                subprocess.check_call([
-                    'git', 'mv',
-                    os.path.join('data', wf['owner'], original_name + '.ga'),
-                    os.path.join('data', wf['owner'], wf['name'] + '.ga')
-                ])
+                print('\t', 'Current', wf['id'], wf['name'], 'Existing', existing_wf[wf['id']])
+                # subprocess.check_call([
+                    # 'git', 'mv',
+                    # os.path.join('data', wf['owner'], original_name + '.ga'),
+                    # os.path.join('data', wf['owner'], wf['name'] + '.ga')
+                # ])
 
         try:
             wf_data = gi.workflows.export_workflow_json(wf['id'])
+            print('WRITE', wf['id'], wf['name'])
             with open(os.path.join('data', wf['owner'], wf['name'] + '.ga'), 'w') as handle:
+                wf_data['id'] = wf['id']
                 json.dump(wf_data, handle, sort_keys=True, indent=4)
         except:
             pass
@@ -73,9 +77,14 @@ def __main__():
     subprocess.check_call([
         'git', 'add', 'data'
     ])
-    subprocess.check_call([
-        'git', 'commit', '-m', 'Automated commit for %s' % datetime.datetime.today()
+    numstat = subprocess.check_output([
+        'git', 'diff', '--cached', '--numstat',
     ])
+    # Only commit if things were added.
+    if len(numstat.strip()) > 0:
+        subprocess.check_call([
+            'git', 'commit', '-m', 'Automated commit for %s' % datetime.datetime.today()
+        ])
 
 
 if __name__ == "__main__":
