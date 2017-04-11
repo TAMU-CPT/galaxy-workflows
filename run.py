@@ -19,6 +19,16 @@ NOW = datetime.datetime.now()
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 BUILD_ID = os.environ.get('BUILD_NUMBER', 'Manual')
 
+
+def extract_existing_wf_ids():
+    existing_workflow_ids = {}
+    for wf in glob.glob("data/*/*.ga"):
+        with open(wf, 'r') as handle:
+            data = json.load(handle)
+            existing_workflow_ids[data['uuid']] = data['name']
+    return existing_workflow_ids
+
+
 def __main__():
     parser = argparse.ArgumentParser(description="""Script to run all workflows mentioned in workflows_to_test.
     It will import the shared workflows are create histories for each workflow run, prefixed with ``TEST_RUN_<date>:``
@@ -34,28 +44,37 @@ def __main__():
                         help="""Location to store xunit report in""")
     args = parser.parse_args()
 
-    existing_workflows = glob.glob("data/*/*.ga")
-    print(existing_workflows)
+    existing_wf = extract_existing_wf_ids()
 
     gi = galaxy.GalaxyInstance(args.url, args.key)
     for wf in tqdm(gi.workflows.get_workflows()):
-        # {'owner': 'eric-rasche', 'deleted': False, 'id': '1247ee583226c37f', 'url': '/galaxy/api/workflows/1247ee583226c37f', 'published': True, 'name': 'Indel Calling', 'model_class': 'StoredWorkflow', 'latest_workflow_uuid': 'ef482b6d-3497-411f-b3b0-0fe757d391cb'}
+        # if 'Update NT' not in wf['name']: continue
+
         if not os.path.exists(wf['owner']):
             os.makedirs(wf['owner'])
 
-        with open(os.path.join('data', wf['owner'], wf['name'] + '.ga'), 'w') as handle:
-            try:
-                json.dump(
-                    gi.workflows.export_workflow_json(wf['id']),
-                    handle,
-                    sort_keys=True,
-                    indent=4
-                )
-            except:
-                pass
+        if wf['latest_workflow_uuid'] in existing_wf:
+            original_name = existing_wf[wf['latest_workflow_uuid']]
+            # If the name has changed, `git mv`
+            if original_name != wf['name']:
+                subprocess.check_call([
+                    'git', 'mv',
+                    os.path.join('data', wf['owner'], original_name + '.ga'),
+                    os.path.join('data', wf['owner'], wf['name'] + '.ga')
+                ])
+
+        try:
+            wf_data = gi.workflows.export_workflow_json(wf['id'])
+            with open(os.path.join('data', wf['owner'], wf['name'] + '.ga'), 'w') as handle:
+                json.dump(wf_data, handle, sort_keys=True, indent=4)
+        except:
+            pass
 
     subprocess.check_call([
         'git', 'add', 'data'
+    ])
+    subprocess.check_call([
+        'git', 'commit', '-m', 'Automated commit for %s' % datetime.datetime.today()
     ])
 
 
