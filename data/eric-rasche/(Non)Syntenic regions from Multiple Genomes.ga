@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "given a ProgressiveMauve XMFA nucleotide level alignment, extract lists of syntenic and non syntentic genes",
     "format-version": "0.1",
+    "id": "e6854fc22d0603b5",
     "name": "(Non)Syntenic regions from Multiple Genomes",
     "steps": {},
     "uuid": "9e184516-419d-4bc0-9e04-93bc35692bf7"

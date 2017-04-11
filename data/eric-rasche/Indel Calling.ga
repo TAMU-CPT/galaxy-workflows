@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "Detects minor sequence changes between a mutant organism and its parent.  Designed for prokaryotes and phages.",
     "format-version": "0.1",
+    "id": "1247ee583226c37f",
     "name": "Indel Calling",
     "steps": {
         "0": {

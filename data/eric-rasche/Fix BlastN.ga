@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "8040f391b1a6f1f6",
     "name": "Fix BlastN",
     "steps": {
         "0": {

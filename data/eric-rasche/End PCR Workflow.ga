@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "ad5d4d6aea3f9d76",
     "name": "End PCR Workflow",
     "steps": {
         "0": {

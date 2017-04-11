@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "6ef78cb4f3918886",
     "name": "PAP 2017 Functional (v8.13)",
     "steps": {
         "0": {

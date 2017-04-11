@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "d88163477fada167",
     "name": "LipoRy-GFF v2",
     "steps": {
         "0": {

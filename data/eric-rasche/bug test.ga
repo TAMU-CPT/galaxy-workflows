@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "ca3351cc2554afc5",
     "name": "bug test",
     "steps": {
         "0": {

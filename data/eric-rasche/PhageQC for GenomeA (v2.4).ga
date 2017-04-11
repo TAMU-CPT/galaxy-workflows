@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "5bf46a2992823065",
     "name": "PhageQC for GenomeA (v2.4)",
     "steps": {
         "0": {

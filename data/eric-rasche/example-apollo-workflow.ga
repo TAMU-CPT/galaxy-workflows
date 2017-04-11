@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "bab57bc680d33d91",
     "name": "example-apollo-workflow",
     "steps": {
         "0": {

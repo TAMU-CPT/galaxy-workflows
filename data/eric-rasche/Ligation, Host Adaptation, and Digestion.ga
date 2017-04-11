@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "8d961fc5f2053806",
     "name": "Ligation, Host Adaptation, and Digestion",
     "steps": {
         "0": {

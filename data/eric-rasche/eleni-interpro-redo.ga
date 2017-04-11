@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "b38a3a73730ae1a7",
     "name": "eleni-interpro-redo",
     "steps": {
         "0": {

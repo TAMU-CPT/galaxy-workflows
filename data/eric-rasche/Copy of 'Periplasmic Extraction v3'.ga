@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "58d04453dfad16e4",
     "name": "Copy of 'Periplasmic Extraction v3'",
     "steps": {
         "0": {

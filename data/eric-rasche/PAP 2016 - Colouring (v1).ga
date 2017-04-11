@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "9524e80da2127129",
     "name": "PAP 2016 - Colouring (v1)",
     "steps": {
         "0": {

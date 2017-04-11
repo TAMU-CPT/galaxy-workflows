@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "9b282bf48b7d2650",
     "name": "PAP 2017 Structural (v8.2)",
     "steps": {
         "0": {

@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "257af32786fc3cfe",
     "name": "jenkins-wf-test-fail",
     "steps": {
         "0": {

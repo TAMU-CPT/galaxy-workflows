@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "1b3d409234bc04ff",
     "name": "Export CDSs from Apollo GFF3",
     "steps": {
         "0": {

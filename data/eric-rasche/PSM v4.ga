@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "b3a7fe38b7a6c5ed",
     "name": "PSM v4",
     "steps": {
         "0": {

@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "3088e7acb60bdba2",
     "name": "Load FASTA (.fa) into Apollo",
     "steps": {
         "0": {

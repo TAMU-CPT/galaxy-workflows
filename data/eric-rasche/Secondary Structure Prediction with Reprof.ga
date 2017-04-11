@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "3eb37d70e543cfef",
     "name": "Secondary Structure Prediction with Reprof",
     "steps": {
         "0": {

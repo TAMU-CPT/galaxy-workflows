@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "7bfac6e726679b2c",
     "name": "PAP 2017 Structural (v8.6) - UpdateExisting",
     "steps": {
         "0": {

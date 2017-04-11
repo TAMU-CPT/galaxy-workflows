@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "4a88294502d050f4",
     "name": "jenkins-wf-test-pass",
     "steps": {
         "0": {

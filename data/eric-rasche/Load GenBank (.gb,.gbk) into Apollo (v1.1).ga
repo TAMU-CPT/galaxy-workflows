@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "75185b0d64319e5d",
     "name": "Load GenBank (.gb,.gbk) into Apollo (v1.1)",
     "steps": {
         "0": {

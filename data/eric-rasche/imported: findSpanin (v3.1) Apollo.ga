@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "aab29cf2ca232a62",
     "name": "findSpanin (v3.1) Apollo",
     "steps": {
         "0": {

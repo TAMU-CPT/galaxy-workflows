@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "212878241cf93624",
     "name": "Phage Annotation Pipeline 2015 - Part C",
     "steps": {
         "0": {

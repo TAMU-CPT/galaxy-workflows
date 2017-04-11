@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "5ca759f66e710a3f",
     "name": "docs-example-wf",
     "steps": {
         "0": {

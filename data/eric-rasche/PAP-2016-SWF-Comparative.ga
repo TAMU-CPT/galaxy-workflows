@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "45a43c3baa434abb",
     "name": "PAP-2016-SWF-Comparative",
     "steps": {
         "0": {

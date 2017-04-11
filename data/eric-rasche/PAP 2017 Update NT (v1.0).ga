@@ -2,7 +2,8 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
-    "name": "PAP 2017 Update NT",
+    "id": "ad86857bfadfed8c",
+    "name": "PAP 2017 Update NT (v1.0)",
     "steps": {
         "0": {
             "annotation": "",
@@ -185,8 +186,8 @@
                 }
             ],
             "position": {
-                "left": 500,
-                "top": 298
+                "left": 512,
+                "top": 321
             },
             "post_job_actions": {
                 "HideDatasetActionoutput": {
@@ -306,5 +307,5 @@
             "workflow_outputs": []
         }
     },
-    "uuid": "90d56d2f-213b-458a-88ef-b96f37117adf"
+    "uuid": "f610bdad-7e6a-4d88-a85f-313111bda7d8"
 }

@@ -2,6 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "",
     "format-version": "0.1",
+    "id": "97e95bc028a2aba5",
     "name": "PAUSE 3 - Paired End (v4.0)",
     "steps": {
         "0": {
