@@ -64,7 +64,7 @@ def __main__():
                     # os.path.join('data', wf['owner'], wf['name'] + '.ga')
                 # ])
 
-        with xunit('galaxy', 'download_wf') as testCase:
+        with xunit('galaxy', 'download_wf.%s' % wf['id']) as testCase:
             wf_data = gi.workflows.export_workflow_json(wf['id'])
             with open(os.path.join('data', wf['owner'], wf['name'] + '.ga'), 'w') as handle:
                 wf_data['id'] = wf['id']
