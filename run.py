@@ -59,11 +59,11 @@ def __main__():
             # If the name has changed, `git mv`
             if original_name != wf['name']:
                 print('\t', 'Current', wf['id'], wf['name'], 'Existing', existing_wf[wf['id']])
-                # subprocess.check_call([
-                    # 'git', 'mv',
-                    # os.path.join('data', wf['owner'], original_name + '.ga'),
-                    # os.path.join('data', wf['owner'], wf['name'] + '.ga')
-                # ])
+                subprocess.check_call([
+                    'git', 'mv',
+                    os.path.join('data', wf['owner'], original_name + '.ga'),
+                    os.path.join('data', wf['owner'], wf['name'] + '.ga')
+                ])
 
         try:
             wf_data = gi.workflows.export_workflow_json(wf['id'])
