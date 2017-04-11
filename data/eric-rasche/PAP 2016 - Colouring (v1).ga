@@ -1,0 +1,168 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "9524e80da2127129",
+    "name": "PAP 2016 - Colouring (v1)",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.webapollo.export",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Retrieve Data",
+                    "name": "org_source"
+                }
+            ],
+            "label": null,
+            "name": "Retrieve Data",
+            "outputs": [
+                {
+                    "name": "gff_out",
+                    "type": "gff3"
+                },
+                {
+                    "name": "fasta_out",
+                    "type": "fasta"
+                },
+                {
+                    "name": "json_out",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 168.5,
+                "top": 188.5
+            },
+            "post_job_actions": {
+                "HideDatasetActionfasta_out": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "fasta_out"
+                },
+                "HideDatasetActiongff_out": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "gff_out"
+                },
+                "HideDatasetActionjson_out": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "json_out"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.webapollo.export",
+            "tool_state": "{\"cn_source\": \"{\\\"refseqs\\\": [{\\\"__index__\\\": 0, \\\"refseq\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}}], \\\"__current_case__\\\": 2, \\\"source_select\\\": \\\"direct\\\"}\", \"org_source\": \"{\\\"org_raw\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1, \\\"source_select\\\": \\\"direct\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "2.3",
+            "type": "tool",
+            "uuid": "ebbbfb1d-4f46-4873-bfa3-a60ce8a58858",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.color",
+            "id": 1,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 0,
+                    "output_name": "gff_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GFF3 Color",
+                    "name": "gff3_data"
+                }
+            ],
+            "label": null,
+            "name": "GFF3 Color",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 386,
+                "top": 120.5
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.color",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "tool_version": "1.0.0",
+            "type": "tool",
+            "uuid": "627483c3-2c9b-4602-b394-c7530cdea280",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt2.phage.genome_map",
+            "id": 2,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 1,
+                    "output_name": "default"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "fasta_out"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Genome Mapper",
+                    "name": "rows"
+                },
+                {
+                    "description": "runtime parameter for tool Genome Mapper",
+                    "name": "gff3_data"
+                },
+                {
+                    "description": "runtime parameter for tool Genome Mapper",
+                    "name": "width"
+                },
+                {
+                    "description": "runtime parameter for tool Genome Mapper",
+                    "name": "reference_genome"
+                }
+            ],
+            "label": null,
+            "name": "Genome Mapper",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "svg"
+                }
+            ],
+            "position": {
+                "left": 566.5,
+                "top": 191.5
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt2.phage.genome_map",
+            "tool_state": "{\"subset\": \"{\\\"subset\\\": \\\"false\\\", \\\"__current_case__\\\": 1}\", \"__page__\": 0, \"rows\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"gff3_data\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"width\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"hypo\": \"\\\"false\\\"\"}",
+            "tool_version": "3.0",
+            "type": "tool",
+            "uuid": "fcc85992-5034-4b06-acd1-83c0477ff065",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "7e548692-7b70-473d-8bea-32aa3bd409e5"
+                }
+            ]
+        }
+    },
+    "uuid": "782fb284-69e0-48d6-8d65-767c22a8e3f3"
+}

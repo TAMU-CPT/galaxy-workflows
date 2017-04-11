@@ -1,0 +1,411 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "id": "a04c462499898a63",
+    "name": "PAP-2016-SWF-Blast",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Proteins"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 213.28961181640625,
+                "top": 205.24248123168945
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Proteins\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "2b880b0e-054a-43c6-995b-b2557e76722f",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input GFF3"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 160.27365112304688,
+                "top": 284.2413520812988
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input GFF3\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "1c4ab1f9-26bb-4852-9dfa-96b682071315",
+            "workflow_outputs": []
+        },
+        "10": {
+            "annotation": "",
+            "content_id": "gff3.rebase",
+            "id": 10,
+            "input_connections": {
+                "child": {
+                    "id": 8,
+                    "output_name": "default"
+                },
+                "parent": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Rebase GFF3 features",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 1567.7377624511719,
+                "top": 234.63905715942383
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "gff3.rebase",
+            "tool_state": "{\"__page__\": 0, \"interpro\": \"\\\"false\\\"\", \"parent\": \"null\", \"protein2dna\": \"\\\"true\\\"\", \"__rerun_remap_job_id__\": null, \"child\": \"null\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "fd0312c8-b101-4136-9905-d34a5a6c2e88",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "default",
+                    "uuid": "3dffa225-d8f7-46bd-a9c1-467a20d2ca02"
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": null,
+            "id": 2,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Genome"
+                }
+            ],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 210.28659057617188,
+                "top": 373.2464179992676
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Genome\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "bf821dc8-720d-4306-a0c2-a8bfa1e6f0b3",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.gff3.export_seq",
+            "id": 3,
+            "input_connections": {
+                "gff3_data": {
+                    "id": 1,
+                    "output_name": "output"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "GFF3 Feature Sequence Export",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 414.7488708496094,
+                "top": 234.63905715942383
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.gff3.export_seq",
+            "tool_state": "{\"__page__\": 0, \"gff3_data\": \"null\", \"reference_genome\": \"{\\\"reference_genome_source\\\": \\\"history\\\", \\\"genome_fasta\\\": null, \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"positional_2\": \"null\", \"feature_filter\": \"\\\"CDS\\\"\"}",
+            "tool_version": "1.0.1",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastn_wrapper/0.1.01",
+            "id": 4,
+            "input_connections": {
+                "query": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "NCBI BLAST+ blastn",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 414.7488708496094,
+                "top": 374.6306037902832
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastn_wrapper/0.1.01",
+            "tool_shed_repository": {
+                "changeset_revision": "2fe07f50a41e",
+                "name": "ncbi_blast_plus",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"evalue_cutoff\": \"\\\"0.001\\\"\", \"__page__\": 0, \"adv_opts\": \"{\\\"adv_opts_selector\\\": \\\"basic\\\", \\\"__current_case__\\\": 0}\", \"__rerun_remap_job_id__\": null, \"blast_type\": \"\\\"dc-megablast\\\"\", \"db_opts\": \"{\\\"db_opts_selector\\\": \\\"db\\\", \\\"subject\\\": \\\"\\\", \\\"histdb\\\": \\\"\\\", \\\"__current_case__\\\": 0, \\\"database\\\": \\\"nt_aug2015\\\"}\", \"output\": \"{\\\"out_format\\\": \\\"5\\\", \\\"__current_case__\\\": 3}\", \"query\": \"null\"}",
+            "tool_version": "0.1.01",
+            "type": "tool",
+            "uuid": "8cf2c5aa-3143-493b-9218-00103b2cd327",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "edu.tamu.cpt.fasta.seq_trans",
+            "id": 5,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Fasta Translate",
+            "outputs": [
+                {
+                    "name": "default",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 719.7413635253906,
+                "top": 234.63905715942383
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "edu.tamu.cpt.fasta.seq_trans",
+            "tool_state": "{\"output\": \"{\\\"format_select\\\": \\\"protein\\\", \\\"strip_stops\\\": \\\"true\\\", \\\"__current_case__\\\": 1, \\\"table\\\": \\\"11\\\"}\", \"fasta\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+            "tool_version": "1.2",
+            "type": "tool",
+            "uuid": "659dffc1-cb90-44e2-b9a4-557b7eb5b602",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "blastxml_to_gapped_gff3",
+            "id": 6,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "BlastXML to gapped GFF3",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 719.7648010253906,
+                "top": 347.6739692687988
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "blastxml_to_gapped_gff3",
+            "tool_state": "{\"trim\": \"\\\"--trim\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"blastxml\": \"null\", \"min_gap\": \"\\\"100\\\"\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "dea27b66-b8f9-4e4e-83c6-0e6c9d7eed31",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "default",
+                    "uuid": "5d37b03e-8765-4d79-831c-a8ec52ea89e4"
+                }
+            ]
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastp_wrapper/0.1.01",
+            "id": 7,
+            "input_connections": {
+                "query": {
+                    "id": 5,
+                    "output_name": "default"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "NCBI BLAST+ blastp",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 991.7477722167969,
+                "top": 234.63905715942383
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output1"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/ncbi_blastp_wrapper/0.1.01",
+            "tool_shed_repository": {
+                "changeset_revision": "2fe07f50a41e",
+                "name": "ncbi_blast_plus",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"evalue_cutoff\": \"\\\"0.001\\\"\", \"__page__\": 0, \"adv_opts\": \"{\\\"adv_opts_selector\\\": \\\"basic\\\", \\\"__current_case__\\\": 0}\", \"__rerun_remap_job_id__\": null, \"blast_type\": \"\\\"blastp\\\"\", \"db_opts\": \"{\\\"db_opts_selector\\\": \\\"db\\\", \\\"subject\\\": \\\"\\\", \\\"histdb\\\": \\\"\\\", \\\"__current_case__\\\": 0, \\\"database\\\": \\\"nr_aug2015\\\"}\", \"output\": \"{\\\"out_format\\\": \\\"5\\\", \\\"__current_case__\\\": 3}\", \"query\": \"null\"}",
+            "tool_version": "0.1.01",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": []
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "blastxml_to_gapped_gff3",
+            "id": 8,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "BlastXML to gapped GFF3",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 1292.7283630371094,
+                "top": 234.63905715942383
+            },
+            "post_job_actions": {
+                "HideDatasetActiondefault": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "default"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "blastxml_to_gapped_gff3",
+            "tool_state": "{\"trim\": \"\\\"--trim\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"blastxml\": \"null\", \"min_gap\": \"\\\"10\\\"\"}",
+            "tool_version": "1.0",
+            "type": "tool",
+            "uuid": "54a33204-5c8b-433d-b154-52119520f9e5",
+            "workflow_outputs": []
+        },
+        "9": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/blastxml_to_tabular/0.1.01",
+            "id": 9,
+            "input_connections": {
+                "blastxml_file": {
+                    "id": 7,
+                    "output_name": "output1"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "BLAST XML to tabular",
+            "outputs": [
+                {
+                    "name": "tabular_file",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1292.7283630371094,
+                "top": 347.6505012512207
+            },
+            "post_job_actions": {
+                "RenameDatasetActiontabular_file": {
+                    "action_arguments": {
+                        "newname": "BLAST Results"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "tabular_file"
+                }
+            },
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/ncbi_blast_plus/blastxml_to_tabular/0.1.01",
+            "tool_shed_repository": {
+                "changeset_revision": "2fe07f50a41e",
+                "name": "ncbi_blast_plus",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"__page__\": 0, \"output\": \"{\\\"out_format\\\": \\\"ext\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"blastxml_file\": \"null\"}",
+            "tool_version": "0.1.01",
+            "type": "tool",
+            "uuid": "None",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "tabular_file",
+                    "uuid": "a68493ab-190f-4e7c-bd6b-0f2d60915eea"
+                }
+            ]
+        }
+    },
+    "uuid": "1f7d463e-f18c-4bce-bc5c-83a0a6997cde"
+}
